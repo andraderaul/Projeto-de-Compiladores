@@ -5,14 +5,14 @@ package compiladores.node;
 import compiladores.analysis.*;
 
 @SuppressWarnings("nls")
-public final class TComentarioLinha extends Token
+public final class TComentarioBlocoCorpo extends Token
 {
-    public TComentarioLinha(String text)
+    public TComentarioBlocoCorpo(String text)
     {
         setText(text);
     }
 
-    public TComentarioLinha(String text, int line, int pos)
+    public TComentarioBlocoCorpo(String text, int line, int pos)
     {
         setText(text);
         setLine(line);
@@ -22,12 +22,12 @@ public final class TComentarioLinha extends Token
     @Override
     public Object clone()
     {
-      return new TComentarioLinha(getText(), getLine(), getPos());
+      return new TComentarioBlocoCorpo(getText(), getLine(), getPos());
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseTComentarioLinha(this);
+        ((Analysis) sw).caseTComentarioBlocoCorpo(this);
     }
 }

@@ -5,8 +5,7 @@
  */
 package compiladores;
 
-import compiladores.lexer.Lexer;
-//import compiladores.lexer.State;
+import compiladores.lexer.*;
 import compiladores.node.*;
 
 /**
@@ -15,7 +14,7 @@ import compiladores.node.*;
  */
 public class Comentario extends Lexer {
     private int contador;
-    private TComentarioInicio comentario;
+    private TComentarioBlocoInicio comentario;
     private StringBuffer text;
     
     // definindo o construtor
@@ -24,11 +23,11 @@ public class Comentario extends Lexer {
     }
     // definindo um filter que reconhece comentários aninhados.
     @Override
-    protected void filter() {
+    protected void filter() throws LexerException {
         if (state.equals(State.COMENTARIO)) {
             // entrando no estado cometario
             if (comentario == null) { // o token deve ser um comentario
-               comentario = (TComentarioInicio) token;
+               comentario = (TComentarioBlocoInicio) token;
                text = new StringBuffer(comentario.getText());
                contador = 1;
                token = null;
@@ -38,9 +37,13 @@ public class Comentario extends Lexer {
             
             // ja estavamos em um estado comentario
             text.append(token.getText()); // 
-            if (token instanceof TComentarioInicio) contador++ ;
-            else if (token instanceof TComentarioFim) contador--;
-            if (contador != 0) token = null;
+            if (token instanceof TComentarioBlocoInicio) contador++ ;
+            else if (token instanceof TComentarioBlocoFim) contador--;
+            if (contador != 0) {
+                if (token instanceof EOF) {
+                    throw new LexerException(null, "Token desconhecido ('" + comentario + "') [Linha - " + comentario.getLine());
+                }
+            }
             else {
                 comentario.setText(text.toString());
                 token = comentario;
