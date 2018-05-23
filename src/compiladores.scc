@@ -1,0 +1,69 @@
+/* 
+	filename   : compiladores.ssc
+	created on : 21/05/2018
+	description:
+*/
+
+/* define package-prefix */
+Package compiladores;
+
+/* define helpers */
+Helpers
+    numero = ['0' .. '9'];
+    e_par = '(';
+    d_par = ')';
+    aspas_simples = ''';
+    aspas_duplas = '"';
+    sublinhado = '_';
+    letra_minuscula = ['a' .. 'z'];
+    letra_maiuscula = ['A' .. 'Z'];
+    blank = (' ' | 13 )+;
+    ponto_e_virgula = ';';
+    nova_linha = 10;
+    inteiro = 'inteiro';
+    real = 'real';
+    letras = (letra_maiuscula | letra_minuscula)+;     
+    id_def = (sublinhado | letras)+ (sublinhado | letras | numero)*;
+    
+    
+Tokens
+    id = id_def; 
+    numinteiro = numero*;
+    numreal = numero+ ',' numero+;
+    caractere = letra_maiuscula | letra_minuscula;
+    tipo = inteiro | real;
+    blank = blank;
+    comentario_linha = '//'[32 .. 255]*;
+    comentario_bloco = '/*'[32 .. 255]*'*/';
+    
+/* talvez isso aqui deva so ficar em HELPERS */
+    ponto_e_virgula = ponto_e_virgula;
+    nova_linha = nova_linha;
+    aspas_simples = aspas_simples;
+    aspas_duplas = aspas_duplas;
+    sublinhado = sublinhado;
+    e_par = e_par;
+    d_par = d_par;
+/* até aqui */    
+
+/* operators */
+    mais = '+';
+    menos = '-';
+    mult = '*';
+    div = '/';
+    mod = '%';
+    maior_que = '>';
+    menor_que = '<';
+    menor_ou_igual_que = '<=';
+    maior_ou_igual_que = '>=';
+    igual = '=';
+    negacao = 'nao';
+    logical_and = 'e';
+    logical_or = 'ou';
+    atribuicao = ':=';
+    diferente = '<>';
+
+
+/* Token to be ignored */
+Ignored Tokens
+    comentario_linha, comentario_bloco, blank;
