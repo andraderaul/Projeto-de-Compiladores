@@ -22,15 +22,11 @@ public class Main {
             /* Form our AST */
             Lexer lexer = new Lexer (new PushbackReader(
                new FileReader(args[0]), 1024));
-           
             while (true) {
                 Token token = lexer.next();
-                
-                if ("".equals(token.getText())){
-                    System.out.println("break");
+                if (token instanceof EOF) {
                     break;
                 }
-                
                 System.out.println("Texto: " + token.getText() + " " + "| Classe: " + token.getClass().getSimpleName());
                     
            }
