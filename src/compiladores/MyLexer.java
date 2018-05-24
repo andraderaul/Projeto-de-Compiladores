@@ -23,7 +23,7 @@ public class MyLexer extends Lexer {
   // We define a filter that recognizes nested comments.
 @Override
   protected void filter() throws LexerException { // if we are in the comment state
-    System.out.println("PILHA: " +count);
+    //System.out.println("PILHA: " +count);
     if (state.equals(State.COMENTARIO)) { // if we are just entering this state
       if (comment == null) { // The token is supposed to be a comment.
         // We keep a reference to it and set the count to one

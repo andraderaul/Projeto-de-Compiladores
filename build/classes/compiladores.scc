@@ -20,8 +20,23 @@ Helpers
     blank = (' ' | 13 )+;
     ponto_e_virgula = ';';
     nova_linha = 10;
+    
+    /* Palavras reservadas */
     inteiro = 'inteiro';
     real = 'real';
+    caractere = 'caractere';
+    booleano = 'booleano';
+    inicio = 'inicio';
+    fim = 'fim';
+    se = 'se';
+    senao = 'senao';
+    enquanto = 'enquanto';
+    para = 'para';
+    avalie = 'avalie';
+    caso = 'caso';
+    verdadeiro = 'verdadeiro';
+    falso = 'falso';
+
     letras = (letra_maiuscula | letra_minuscula)+;     
     id_def = (sublinhado | letras)+ (sublinhado | letras | numero)*;
     tudo = [0 .. 0xFFFF];
@@ -31,11 +46,11 @@ States
     comentario;
     
 Tokens
+    tipo = inteiro | real | caractere;
     id = id_def; 
     numinteiro = numero*;
     numreal = numero+ ',' numero+;
     caractere = letra_maiuscula | letra_minuscula;
-    tipo = inteiro | real;
     blank = blank;
 
  /* peguei essa parte na documentacao */
