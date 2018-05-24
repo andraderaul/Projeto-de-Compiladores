@@ -31,52 +31,50 @@ States
     comentario;
     
 Tokens
-    {normal} id = id_def; 
-    {normal} numinteiro = numero*;
-    {normal} numreal = numero+ ',' numero+;
-    {normal} caractere = letra_maiuscula | letra_minuscula;
-    {normal} tipo = inteiro | real;
-    {normal} blank = blank;
+    id = id_def; 
+    numinteiro = numero*;
+    numreal = numero+ ',' numero+;
+    caractere = letra_maiuscula | letra_minuscula;
+    tipo = inteiro | real;
+    blank = blank;
 
  /* peguei essa parte na documentacao */
-    {normal->comentario,comentario}
-           comentario_bloco_inicio = '/*';
-    {comentario} comentario_bloco_corpo = [tudo - ['*' + '/']]*;
-    {comentario} comentario_bloco_fim = '*/';       
-
+    {normal->comentario,comentario} comentario_inicio = '/*';
+    {comentario} comentario_fim = '*/';
+    {comentario} comentario_corpo = [tudo - ['*' + '/']]*;       
     {comentario} estrela = '*';
     {comentario} barra = '/';
 /* ate aqui */
 
 /* talvez isso aqui deva so ficar em HELPERS */
-    {normal} ponto_e_virgula = ponto_e_virgula;
-    {normal} nova_linha = nova_linha;
-    {normal} aspas_simples = aspas_simples;
-    {normal} aspas_duplas = aspas_duplas;
-    {normal} sublinhado = sublinhado;
-    {normal} e_par = e_par;
-    {normal} d_par = d_par;
+    ponto_e_virgula = ponto_e_virgula;
+    nova_linha = nova_linha;
+    aspas_simples = aspas_simples;
+    aspas_duplas = aspas_duplas;
+    sublinhado = sublinhado;
+    e_par = e_par;
+    d_par = d_par;
 /* até aqui */    
 
 /* operators */
-    {normal} mais = '+';
-    {normal} menos = '-';
-    {normal} mult = '*';
-    {normal} div = '/';
-    {normal} mod = '%';
-    {normal} maior_que = '>';
-    {normal} menor_que = '<';
-    {normal} menor_ou_igual_que = '<=';
-    {normal} maior_ou_igual_que = '>=';
-    {normal} igual = '=';
-    {normal} negacao = 'nao';
-    {normal} logical_and = 'e';
-    {normal} logical_or = 'ou';
-    {normal} atribuicao = ':=';
-    {normal} diferente = '<>';
+    mais = '+';
+    menos = '-';
+    mult = '*';
+    div = '/';
+    mod = '%';
+    maior_que = '>';
+    menor_que = '<';
+    menor_ou_igual_que = '<=';
+    maior_ou_igual_que = '>=';
+    igual = '=';
+    negacao = 'nao';
+    logical_and = 'e';
+    logical_or = 'ou';
+    atribuicao = ':=';
+    diferente = '<>';
     
 
 
 /* Token to be ignored */
 Ignored Tokens
-    blank, comentario_bloco_fim, comentario_bloco_inicio, comentario_bloco_corpo ;
+    blank;

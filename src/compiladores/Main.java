@@ -20,16 +20,17 @@ public class Main {
       if (args.length > 0) {
          try {
             /* Form our AST */
-            Lexer lexer = new Lexer (new PushbackReader(
-               new FileReader(args[0]), 1024));
-           //  Comentario lexer = new Comentario(new PushbackReader(
-           //   new FileReader(args[0]), 1024));
+          //  Lexer lexer = new Lexer (new PushbackReader(
+          //     new FileReader(args[0]), 1024));
+             MyLexer lexer = new MyLexer(new PushbackReader(
+              new FileReader(args[0]), 1024));
             while (true) {
                 Token token = lexer.next();
                 if (token instanceof EOF) {
                     break;
                 }
-                System.out.println("Texto: " + token.getText() + " " + "| Classe: " + token.getClass().getSimpleName());
+                else if (!(token instanceof TComentario))
+                    System.out.println("Texto: " + token.getText() + " " + "| Classe: " + token.getClass().getSimpleName());
                     
            }
          }
