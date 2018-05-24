@@ -29,7 +29,10 @@ public class Main {
                 if (token instanceof EOF) {
                     break;
                 }
-                else if (!(token instanceof TComentarioInicio))
+                else if (!(token instanceof TComentarioInicio) 
+                        && !(token instanceof TComentarioLinha)
+                        && !(token instanceof TBlank)
+                        && !(token instanceof TNovaLinha))
                     System.out.println("Texto: " + token.getText() + " " + "| Classe: " + token.getClass().getSimpleName());
                     
            }

@@ -53,13 +53,14 @@ Tokens
     caractere = letra_maiuscula | letra_minuscula;
     blank = blank;
 
- /* peguei essa parte na documentacao */
+/* peguei essa parte na documentacao */
     {normal->comentario,comentario} comentario_inicio = '/*';
     {normal->comentario,comentario} comentario_fim = '*/';
     {comentario} comentario_corpo = [tudo - ['*' + '/']]*;       
     {comentario} estrela = '*';
     {comentario} barra = '/';
 /* ate aqui */
+    comentario_linha = '//'[32 .. 255]*;
 
 /* talvez isso aqui deva so ficar em HELPERS */
     ponto_e_virgula = ponto_e_virgula;

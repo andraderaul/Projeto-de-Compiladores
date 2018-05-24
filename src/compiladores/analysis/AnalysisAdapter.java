@@ -135,6 +135,12 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
+    public void caseTComentarioLinha(TComentarioLinha node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
     public void caseTPontoEVirgula(TPontoEVirgula node)
     {
         defaultCase(node);

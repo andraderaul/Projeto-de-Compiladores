@@ -22,6 +22,7 @@ public interface Analysis extends Switch
     void caseTComentarioCorpo(TComentarioCorpo node);
     void caseTEstrela(TEstrela node);
     void caseTBarra(TBarra node);
+    void caseTComentarioLinha(TComentarioLinha node);
     void caseTPontoEVirgula(TPontoEVirgula node);
     void caseTNovaLinha(TNovaLinha node);
     void caseTAspasSimples(TAspasSimples node);

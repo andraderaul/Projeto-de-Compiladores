@@ -27,17 +27,19 @@ public class MyLexer extends Lexer {
     if (state.equals(State.COMENTARIO)) { // if we are just entering this state
       if (comentarioInicio == null) { // The token is supposed to be a comment.
         // We keep a reference to it and set the count to one
-         if (token instanceof TComentarioFim) {
+        if (token instanceof TComentarioFim) {
             // checando se começa com comentario de final
             state = State.NORMAL;
             String message;
             message = "Token não esperado ('" + token.getText() + "') [Linha - " + token.getLine() + "]";
             throw new LexerException(null, message);
         }
-        comentarioInicio = (TComentarioInicio) token;
-        text = new StringBuffer(comentarioInicio.getText());
-        count = 1;
-        token = null; // continue to scan the input.
+        else {
+            comentarioInicio = (TComentarioInicio) token;
+            text = new StringBuffer(comentarioInicio.getText());
+            count = 1;
+            token = null; // continue to scan the input.
+        }
       }
       else { // we were already in the comment state
         text.append(token.getText()); // accumulate the text.
