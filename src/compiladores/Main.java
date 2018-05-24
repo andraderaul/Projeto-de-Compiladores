@@ -29,12 +29,12 @@ public class Main {
                 if (token instanceof EOF) {
                     break;
                 }
-                else if (!(token instanceof TComentarioInicio) 
-                        && !(token instanceof TComentarioLinha)
-                        && !(token instanceof TBlank)
-                        && !(token instanceof TNovaLinha))
-                    System.out.println("Texto: " + token.getText() + " " + "| Classe: " + token.getClass().getSimpleName());
-                    
+                else if (token instanceof TBlank) {
+                    System.out.print(token.getText());
+                }
+                else {
+                    System.out.print(token.getClass().getSimpleName());
+                }    
            }
          }
          catch (Exception e) {

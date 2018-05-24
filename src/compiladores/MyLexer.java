@@ -31,7 +31,7 @@ public class MyLexer extends Lexer {
             // checando se começa com comentario de final
             state = State.NORMAL;
             String message;
-            message = "Token não esperado ('" + token.getText() + "') [Linha - " + token.getLine() + "]";
+            message = "Token não esperado ('" + token.getText() + "') [Linha - " + token.getLine() + "], Posicao - " + token.getPos();
             throw new LexerException(null, message);
         }
         else {
@@ -51,7 +51,8 @@ public class MyLexer extends Lexer {
             if (token instanceof EOF) {
                state = State.NORMAL;
                String message;
-               message = "Token não esperado ('" + comentarioInicio.getText() + "') [Linha - " + comentarioInicio.getLine() + "]";
+               message = "Token não esperado ('" + comentarioInicio.getText() + "') [Linha - " + comentarioInicio.getLine() + "], Posicao - " + comentarioInicio.getPos();
+               
                throw new LexerException(null, message);
            } 
             

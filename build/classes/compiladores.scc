@@ -17,9 +17,12 @@ Helpers
     sublinhado = '_';
     letra_minuscula = ['a' .. 'z'];
     letra_maiuscula = ['A' .. 'Z'];
-    blank = (' ' | 13 )+;
     ponto_e_virgula = ';';
-    nova_linha = 10;
+    
+    sp = ' ' ;
+    nl = 10;
+    tab = 9;
+    cr = 13;
     
     /* Palavras reservadas */
     inteiro = 'inteiro';
@@ -51,7 +54,7 @@ Tokens
     numinteiro = numero*;
     numreal = numero+ ',' numero+;
     caractere = letra_maiuscula | letra_minuscula;
-    blank = blank;
+    blank = (sp | tab | (nl | nl cr | cr))+;
 
 /* peguei essa parte na documentacao */
     {normal->comentario,comentario} comentario_inicio = '/*';
@@ -64,7 +67,6 @@ Tokens
 
 /* talvez isso aqui deva so ficar em HELPERS */
     ponto_e_virgula = ponto_e_virgula;
-    nova_linha = nova_linha;
     aspas_simples = aspas_simples;
     aspas_duplas = aspas_duplas;
     sublinhado = sublinhado;

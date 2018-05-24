@@ -147,12 +147,6 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
-    public void caseTNovaLinha(TNovaLinha node)
-    {
-        defaultCase(node);
-    }
-
-    @Override
     public void caseTAspasSimples(TAspasSimples node)
     {
         defaultCase(node);
