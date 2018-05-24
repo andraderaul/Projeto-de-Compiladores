@@ -55,7 +55,7 @@ Tokens
 
  /* peguei essa parte na documentacao */
     {normal->comentario,comentario} comentario_inicio = '/*';
-    {comentario} comentario_fim = '*/';
+    {normal->comentario,comentario} comentario_fim = '*/';
     {comentario} comentario_corpo = [tudo - ['*' + '/']]*;       
     {comentario} estrela = '*';
     {comentario} barra = '/';

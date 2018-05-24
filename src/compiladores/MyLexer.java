@@ -14,7 +14,7 @@ import compiladores.node.*;
 
 public class MyLexer extends Lexer { 
   private int count;
-  private TComentarioInicio comment;
+  private TComentarioInicio comentarioInicio;
   private StringBuffer text;
   // We define a constructor
   public MyLexer(java.io.PushbackReader in) { 
@@ -25,10 +25,17 @@ public class MyLexer extends Lexer {
   protected void filter() throws LexerException { // if we are in the comment state
     //System.out.println("PILHA: " +count);
     if (state.equals(State.COMENTARIO)) { // if we are just entering this state
-      if (comment == null) { // The token is supposed to be a comment.
+      if (comentarioInicio == null) { // The token is supposed to be a comment.
         // We keep a reference to it and set the count to one
-        comment = (TComentarioInicio) token;
-        text = new StringBuffer(comment.getText());
+         if (token instanceof TComentarioFim) {
+            // checando se começa com comentario de final
+            state = State.NORMAL;
+            String message;
+            message = "Token não esperado ('" + token.getText() + "') [Linha - " + token.getLine() + "]";
+            throw new LexerException(null, message);
+        }
+        comentarioInicio = (TComentarioInicio) token;
+        text = new StringBuffer(comentarioInicio.getText());
         count = 1;
         token = null; // continue to scan the input.
       }
@@ -42,7 +49,7 @@ public class MyLexer extends Lexer {
             if (token instanceof EOF) {
                state = State.NORMAL;
                String message;
-               message = "Token não esperado ('" + comment.getText() + "') [Linha - " + comment.getLine() + "]";
+               message = "Token não esperado ('" + comentarioInicio.getText() + "') [Linha - " + comentarioInicio.getLine() + "]";
                throw new LexerException(null, message);
            } 
             
@@ -50,9 +57,9 @@ public class MyLexer extends Lexer {
         }
         else { 
           //comment.setText(text.toString());
-          token = comment; //return a comment with the full text.
+          token = comentarioInicio; //return a comment with the full text.
           state = State.NORMAL; //go back to normal.
-          comment = null; // We release this reference.
+          comentarioInicio = null; // We release this reference.
         }
       }
     }
