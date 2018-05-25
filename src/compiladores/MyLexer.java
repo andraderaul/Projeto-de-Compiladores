@@ -59,7 +59,7 @@ public class MyLexer extends Lexer {
             token = null; // continue to scan the input.
         }
         else { 
-          //comment.setText(text.toString());
+          //comentarioInicio.setText(s);
           token = comentarioInicio; //return a comment with the full text.
           state = State.NORMAL; //go back to normal.
           comentarioInicio = null; // We release this reference.

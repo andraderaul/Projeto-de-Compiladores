@@ -9,6 +9,7 @@ import compiladores.lexer.*;
 import java.io.FileReader;
 import java.io.PushbackReader;
 import compiladores.node.* ;
+import static java.lang.System.out;
 
 /**
  *
@@ -36,6 +37,7 @@ public class Main {
                     System.out.print(token.getClass().getSimpleName());
                 }    
            }
+           out.println();
          }
          catch (Exception e) {
             System.out.println (e) ;

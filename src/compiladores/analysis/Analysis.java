@@ -23,12 +23,15 @@ public interface Analysis extends Switch
     void caseTEstrela(TEstrela node);
     void caseTBarra(TBarra node);
     void caseTComentarioLinha(TComentarioLinha node);
+    void caseTDoisPontos(TDoisPontos node);
     void caseTPontoEVirgula(TPontoEVirgula node);
     void caseTAspasSimples(TAspasSimples node);
     void caseTAspasDuplas(TAspasDuplas node);
     void caseTSublinhado(TSublinhado node);
     void caseTEPar(TEPar node);
     void caseTDPar(TDPar node);
+    void caseTECol(TECol node);
+    void caseTDCol(TDCol node);
     void caseTMais(TMais node);
     void caseTMenos(TMenos node);
     void caseTMult(TMult node);

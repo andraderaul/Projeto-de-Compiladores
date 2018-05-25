@@ -12,13 +12,15 @@ Helpers
     numero = ['0' .. '9'];
     e_par = '(';
     d_par = ')';
+    e_col = '[';
+    d_col = ']';
     aspas_simples = ''';
     aspas_duplas = '"';
     sublinhado = '_';
     letra_minuscula = ['a' .. 'z'];
     letra_maiuscula = ['A' .. 'Z'];
     ponto_e_virgula = ';';
-    
+    dois_pontos = ':';
     sp = ' ' ;
     nl = 10;
     tab = 9;
@@ -29,6 +31,8 @@ Helpers
     real = 'real';
     caractere = 'caractere';
     booleano = 'booleano';
+  
+    /*
     inicio = 'inicio';
     fim = 'fim';
     se = 'se';
@@ -38,7 +42,8 @@ Helpers
     avalie = 'avalie';
     caso = 'caso';
     verdadeiro = 'verdadeiro';
-    falso = 'falso';
+    falso = 'falso'; 
+    */
 
     letras = (letra_maiuscula | letra_minuscula)+;     
     id_def = (sublinhado | letras)+ (sublinhado | letras | numero)*;
@@ -49,11 +54,11 @@ States
     comentario;
     
 Tokens
-    tipo = inteiro | real | caractere;
+    tipo = inteiro | real | caractere | booleano;
     id = id_def; 
     numinteiro = numero*;
     numreal = numero+ ',' numero+;
-    caractere = letra_maiuscula | letra_minuscula;
+    caractere = '''letra_maiuscula''' | '''letra_minuscula''' | '''numero''';
     blank = (sp | tab | (nl | nl cr | cr))+;
 
 /* peguei essa parte na documentacao */
@@ -66,30 +71,38 @@ Tokens
     comentario_linha = '//'[32 .. 255]*;
 
 /* talvez isso aqui deva so ficar em HELPERS */
+    dois_pontos = dois_pontos;
     ponto_e_virgula = ponto_e_virgula;
     aspas_simples = aspas_simples;
     aspas_duplas = aspas_duplas;
     sublinhado = sublinhado;
     e_par = e_par;
     d_par = d_par;
+    e_col = e_col;
+    d_col = d_col;
 /* até aqui */    
 
 /* operators */
+    // aritmeticos:
     mais = '+';
     menos = '-';
     mult = '*';
     div = '/';
     mod = '%';
+    // relacionais
     maior_que = '>';
     menor_que = '<';
     menor_ou_igual_que = '<=';
     maior_ou_igual_que = '>=';
     igual = '=';
+    diferente = '<>';
+    // booleanos
     negacao = 'nao';
     logical_and = 'e';
     logical_or = 'ou';
+    //atribuicao
     atribuicao = ':=';
-    diferente = '<>';
+
     
 
 
