@@ -14,7 +14,7 @@ import compiladores.node.*;
 
 public class MyLexer extends Lexer { 
   private int count;
-  private TComentarioInicio comentarioInicio;
+  private TComentarioDeBloco comentario;
   private StringBuffer text;
   // We define a constructor
   public MyLexer(java.io.PushbackReader in) { 
@@ -25,7 +25,7 @@ public class MyLexer extends Lexer {
   protected void filter() throws LexerException { // if we are in the comment state
     //System.out.println("PILHA: " +count);
     if (state.equals(State.COMENTARIO)) { // if we are just entering this state
-      if (comentarioInicio == null) { // The token is supposed to be a comment.
+      if (comentario == null) { // The token is supposed to be a comment.
         // We keep a reference to it and set the count to one
         if (token instanceof TComentarioFim) {
             // checando se começa com comentario de final
@@ -35,15 +35,16 @@ public class MyLexer extends Lexer {
             throw new LexerException(null, message);
         }
         else {
-            comentarioInicio = (TComentarioInicio) token;
-            text = new StringBuffer(comentarioInicio.getText());
+            comentario = (TComentarioDeBloco) token;
+            text = new StringBuffer(comentario.getText());
             count = 1;
             token = null; // continue to scan the input.
         }
       }
       else { // we were already in the comment state
         text.append(token.getText()); // accumulate the text.
-        if (token instanceof TComentarioInicio)
+        if (token instanceof TComentarioLinha);
+        if (token instanceof TComentarioDeBloco)
           count++;
         else if (token instanceof TComentarioFim)
           count--;
@@ -51,7 +52,7 @@ public class MyLexer extends Lexer {
             if (token instanceof EOF) {
                state = State.NORMAL;
                String message;
-               message = "Token não esperado ('" + comentarioInicio.getText() + "') [Linha - " + comentarioInicio.getLine() + "], Posicao - " + comentarioInicio.getPos();
+               message = "Token não esperado ('" + comentario.getText() + "') [Linha - " + comentario.getLine() + "], Posicao - " + comentario.getPos();
                
                throw new LexerException(null, message);
            } 
@@ -60,9 +61,9 @@ public class MyLexer extends Lexer {
         }
         else { 
           //comentarioInicio.setText(s);
-          token = comentarioInicio; //return a comment with the full text.
+          token = comentario; //return a comment with the full text.
           state = State.NORMAL; //go back to normal.
-          comentarioInicio = null; // We release this reference.
+          comentario = null; // We release this reference.
         }
       }
     }

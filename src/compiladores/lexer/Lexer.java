@@ -600,7 +600,7 @@ public class Lexer
     Token new3(@SuppressWarnings("hiding") String text, @SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TNumreal(text, line, pos); }
     Token new4(@SuppressWarnings("hiding") String text, @SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TCaractere(text, line, pos); }
     Token new5(@SuppressWarnings("hiding") String text, @SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TBlank(text, line, pos); }
-    Token new6(@SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TComentarioInicio(line, pos); }
+    Token new6(@SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TComentarioDeBloco(line, pos); }
     Token new7(@SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TComentarioFim(line, pos); }
     Token new8(@SuppressWarnings("hiding") String text, @SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TComentarioCorpo(text, line, pos); }
     Token new9(@SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TEstrela(line, pos); }
@@ -625,11 +625,11 @@ public class Lexer
     Token new28(@SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TMenorOuIgualQue(line, pos); }
     Token new29(@SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TMaiorOuIgualQue(line, pos); }
     Token new30(@SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TIgual(line, pos); }
-    Token new31(@SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TNegacao(line, pos); }
-    Token new32(@SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TLogicalAnd(line, pos); }
-    Token new33(@SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TLogicalOr(line, pos); }
-    Token new34(@SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TAtribuicao(line, pos); }
-    Token new35(@SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TDiferente(line, pos); }
+    Token new31(@SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TDiferente(line, pos); }
+    Token new32(@SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TNegacao(line, pos); }
+    Token new33(@SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TLogicalAnd(line, pos); }
+    Token new34(@SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TLogicalOr(line, pos); }
+    Token new35(@SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TAtribuicao(line, pos); }
 
     private int getChar() throws IOException
     {
@@ -864,7 +864,7 @@ public class Lexer
     private static int[][] accept;
 /*  {
         // NORMAL
-        {2, 5, 5, 5, 5, 15, 25, 14, 17, 18, 23, 21, 22, 24, 2, 12, 13, 27, 30, 26, 1, 19, 20, 1, 1, 1, 1, 1, 1, 1, 1, 1, 5, -1, -1, -1, 7, 6, 11, -1, 34, 28, 35, 29, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4, 4, 4, 11, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 0, },
+        {2, 5, 5, 5, 5, 15, 25, 14, 17, 18, 23, 21, 22, 24, 2, 12, 13, 27, 30, 26, 1, 19, 20, 1, 1, 1, 1, 1, 1, 1, 1, 1, 5, -1, -1, -1, 7, 6, 11, -1, 35, 28, 31, 29, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4, 4, 4, 11, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 0, },
         // COMENTARIO
         {2, 8, 5, 5, 5, 5, 8, 8, 8, 8, 8, 9, 8, 8, 10, 2, 8, 8, 8, 8, 8, 1, 8, 8, 1, 1, 1, 1, 1, 1, 1, 1, 1, 5, 8, 8, 8, 7, 6, 11, 8, 8, 8, 8, 8, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4, 4, 4, 11, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 0, },
 

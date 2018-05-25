@@ -1,2 +1,3 @@
-/* // */
-/* */
+
+integer : isso_e_um_teste := 10 ; 
+caracter : Outro_teste := 'A' ;
