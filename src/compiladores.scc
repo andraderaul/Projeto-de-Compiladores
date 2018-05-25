@@ -68,7 +68,7 @@ Tokens
     {comentario} estrela = '*';
     {comentario} barra = '/';
 /* ate aqui */
-    comentario_linha = '//'[32 .. 255]*;
+    comentario_linha = '//' [[32 .. 255] - ['*' + '/']]*;
 
 /* talvez isso aqui deva so ficar em HELPERS */
     dois_pontos = dois_pontos;
