@@ -5,14 +5,14 @@ package compiladores.node;
 import compiladores.analysis.*;
 
 @SuppressWarnings("nls")
-public final class TTipo extends Token
+public final class TInicio extends Token
 {
-    public TTipo(String text)
+    public TInicio(String text)
     {
         setText(text);
     }
 
-    public TTipo(String text, int line, int pos)
+    public TInicio(String text, int line, int pos)
     {
         setText(text);
         setLine(line);
@@ -22,12 +22,12 @@ public final class TTipo extends Token
     @Override
     public Object clone()
     {
-      return new TTipo(getText(), getLine(), getPos());
+      return new TInicio(getText(), getLine(), getPos());
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseTTipo(this);
+        ((Analysis) sw).caseTInicio(this);
     }
 }

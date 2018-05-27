@@ -19,6 +19,7 @@ Helpers
     sublinhado = '_';
     letra_minuscula = ['a' .. 'z'];
     letra_maiuscula = ['A' .. 'Z'];
+    virgula = ',';
     ponto_e_virgula = ';';
     dois_pontos = ':';
     sp = ' ' ;
@@ -32,7 +33,7 @@ Helpers
     caractere = 'caractere';
     booleano = 'booleano';
   
-    /*
+    programa = 'programa';
     inicio = 'inicio';
     fim = 'fim';
     se = 'se';
@@ -43,7 +44,7 @@ Helpers
     caso = 'caso';
     verdadeiro = 'verdadeiro';
     falso = 'falso'; 
-    */
+    
 
     letras = (letra_maiuscula | letra_minuscula)+;     
     id_def = (sublinhado | letras)+ (sublinhado | letras | numero)*;
@@ -54,7 +55,26 @@ States
     comentario;
     
 Tokens
-    tipo = inteiro | real | caractere | booleano;
+    
+ /* palavras reservadas */
+    inteiro = inteiro;
+    real = real;
+    string = caractere;
+    booleano = booleano;
+    programa = programa;
+    inicio = inicio;
+    fim = fim;
+    se = se;
+    senao = senao;
+    enquanto = enquanto;
+    para = para;
+    avalie = avalie;
+    caso = caso;
+    verdadeiro = verdadeiro;
+    falso = falso; 
+/* ate aqui*/
+    
+    // tipo = inteiro | real | caractere | booleano;
     id = id_def; 
     numinteiro = numero*;
     numreal = numero+ ',' numero+;
@@ -73,6 +93,7 @@ Tokens
 /* talvez isso aqui deva so ficar em HELPERS */
     dois_pontos = dois_pontos;
     ponto_e_virgula = ponto_e_virgula;
+    virgula = virgula;
     aspas_simples = aspas_simples;
     aspas_duplas = aspas_duplas;
     sublinhado = sublinhado;
