@@ -9,12 +9,12 @@ public final class TAtribuicao extends Token
 {
     public TAtribuicao()
     {
-        super.setText(":=");
+        super.setText("<-");
     }
 
     public TAtribuicao(int line, int pos)
     {
-        super.setText(":=");
+        super.setText("<-");
         setLine(line);
         setPos(pos);
     }

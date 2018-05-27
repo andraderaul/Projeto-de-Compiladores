@@ -147,6 +147,18 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
+    public void caseTLeia(TLeia node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseTEscreva(TEscreva node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
     public void caseTVerdadeiro(TVerdadeiro node)
     {
         defaultCase(node);

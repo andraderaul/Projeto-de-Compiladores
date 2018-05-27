@@ -24,6 +24,8 @@ public interface Analysis extends Switch
     void caseTPara(TPara node);
     void caseTAvalie(TAvalie node);
     void caseTCaso(TCaso node);
+    void caseTLeia(TLeia node);
+    void caseTEscreva(TEscreva node);
     void caseTVerdadeiro(TVerdadeiro node);
     void caseTFalso(TFalso node);
     void caseTId(TId node);
