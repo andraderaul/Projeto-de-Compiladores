@@ -31,7 +31,7 @@ public class MyLexer extends Lexer {
             // checando se começa com comentario de final
             state = State.NORMAL;
             String message;
-            message = "Erro de comentario de bloco. ('" + token.getText() + "') [Linha - " + token.getLine() + ", Posicao - " + token.getPos() + "]";
+            message = "Erro de comentario de bloco. Linha: " + token.getLine() + ", posicao: " + token.getPos() + ".";
             throw new LexerException(null, message);
         }
         else {
@@ -52,7 +52,7 @@ public class MyLexer extends Lexer {
             if (token instanceof EOF) {
                state = State.NORMAL;
                String message;
-               message = "Erro de comentario de bloco. ('" + comentario.getText() + "') [Linha - " + comentario.getLine() + "], Posicao - " + comentario.getPos();
+               message = "Erro de comentario de bloco. Linha: " + comentario.getLine() + ", posicao: " + comentario.getPos() + ".";
                
               throw new LexerException(null, message);
            } 
