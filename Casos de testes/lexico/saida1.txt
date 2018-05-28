@@ -1,0 +1,19 @@
+Saida:
+
+TPrograma TId
+TInicio
+	TInteiro TDoispontos TId TVirg TId TVirg TId TPontoevirg
+	TReal TDoispontos TId  TVirg  TId  TVirg  TId 
+TPontoevirg
+	TStringTDoispontos TId
+TVirg TId
+TVirg TId
+TPontoevirg
+	TSeTAParenteseTIdTIgualTId TE TNaoTAParenteseTIdTIgualTIdTFParentese TOu TId TDiferente TIdTFParentese[10,30] Unknown token: {
+		TLeiaTAParenteseTIdTFParentese     TPontoevirg
+	[12,2] Unknown token: }
+	TId TAtrib TNumTPontoevirg
+	TId TAtrib TNumTPontoevirg
+	TId TMenorq TId TMais TIdTPontoevirg
+	TEscrevaTAParenteseTIdTFParenteseTPontoevirg
+TFimprograma

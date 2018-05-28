@@ -1,0 +1,10 @@
+Saida:
+
+
+TComentarioBloco
+
+
+
+TComentarioBloco
+
+Erro de comentario de bloco. Linha: 15, posicao: 3.
