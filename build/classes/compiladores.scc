@@ -1,13 +1,12 @@
 /* 
-	filename   : compiladores.ssc
-	created on : 21/05/2018
-	description:
+  filename   : compiladores.ssc
+  group: Jaine Conceição e Raul Andrade
+  created on : 21/05/2018
 */
 
 /* define package-prefix */
 Package compiladores;
 
-/* define helpers */
 Helpers
     numero = ['0' .. '9'];
     e_par = '(';
@@ -32,20 +31,6 @@ Helpers
     real = 'real';
     caractere = 'caractere';
     booleano = 'booleano';
-  
-    programa = 'programa';
-    inicio = 'inicio';
-    fim = 'fim';
-    se = 'se';
-    senao = 'senao';
-    enquanto = 'enquanto';
-    para = 'para';
-    avalie = 'avalie';
-    caso = 'caso';
-    leia = 'leia';
-    escreva = 'escreva';
-    verdadeiro = 'verdadeiro';
-    falso = 'falso'; 
     
 
     letras = (letra_maiuscula | letra_minuscula)+;     
@@ -59,23 +44,26 @@ States
 Tokens
     
  /* palavras reservadas */
+   programa = 'programa';
+    inicio = 'inicio';
+    fim = 'fim';
+    se = 'se';
+    senao = 'senao';
+    enquanto = 'enquanto';
+    para = 'para';
+    avalie = 'avalie';
+    caso = 'caso';
+    leia = 'leia';
+    escreva = 'escreva';
+    verdadeiro = 'verdadeiro';
+    falso = 'falso';
     inteiro = inteiro;
     real = real;
     string = caractere;
     booleano = booleano;
-    programa = programa;
-    inicio = inicio;
-    fim = fim;
-    se = se;
-    senao = senao;
-    enquanto = enquanto;
-    para = para;
-    avalie = avalie;
-    caso = caso;
-    leia = leia;
-    escreva = escreva;
-    verdadeiro = verdadeiro;
-    falso = falso; 
+    nao = 'nao';
+    e = 'e';
+     ou = 'ou';
 /* ate aqui*/
     
     // tipo = inteiro | real | caractere | booleano;
@@ -121,10 +109,6 @@ Tokens
     maior_ou_igual_que = '>=';
     igual = '=';
     diferente = '<>';
-    // booleanos
-    negacao = 'nao';
-    logical_and = 'e';
-    logical_or = 'ou';
     //atribuicao
     atribuicao = '<-';
 

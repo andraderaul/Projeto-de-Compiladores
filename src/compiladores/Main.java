@@ -9,6 +9,7 @@ import compiladores.lexer.*;
 import java.io.FileReader;
 import java.io.PushbackReader;
 import compiladores.node.* ;
+import java.io.IOException;
 import static java.lang.System.out;
 
 /**
@@ -17,33 +18,38 @@ import static java.lang.System.out;
  */
 
 public class Main {
-   public static void main(String[] args) {
+   public static void main(String[] args) throws LexerException {
       if (args.length > 0) {
          try {
             /* Form our AST */
-          //  Lexer lexer = new Lexer (new PushbackReader(
-          //     new FileReader(args[0]), 1024));
              MyLexer lexer = new MyLexer(new PushbackReader(
               new FileReader(args[0]), 1024));
+              Token token = null;
             while (true) {
-                Token token = lexer.next();
-                if (token instanceof EOF) {
-                    break;
+                try {
+                    token = lexer.next();
+                    if (token instanceof EOF) {
+                        break;
+                    }
+                    else if (token instanceof TBlank) {
+                        out.print(token.getText());
+                    }
+                    else {
+                        out.print(token.getClass().getSimpleName());
+                    }
                 }
-                else if (token instanceof TBlank) {
-                    System.out.print(token.getText());
+                catch (LexerException e ){
+                    out.println(e);
+                    token = lexer.next();
                 }
-                else {
-                    System.out.print(token.getClass().getSimpleName());
-                }    
            }
            out.println();
          }
-         catch (Exception e) {
-            System.out.println (e) ;
+         catch (IOException e) {
+            out.println (e) ;
          }
       } else {
-         System.err.println("usage: java simpleAdder inputFile");
+         System.err.println("usage: java compiladores inputFile");
          System.exit(1);
       }
    }
