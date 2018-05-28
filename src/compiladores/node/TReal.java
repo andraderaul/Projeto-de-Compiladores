@@ -7,14 +7,14 @@ import compiladores.analysis.*;
 @SuppressWarnings("nls")
 public final class TReal extends Token
 {
-    public TReal(String text)
+    public TReal()
     {
-        setText(text);
+        super.setText("real");
     }
 
-    public TReal(String text, int line, int pos)
+    public TReal(int line, int pos)
     {
-        setText(text);
+        super.setText("real");
         setLine(line);
         setPos(pos);
     }
@@ -22,12 +22,18 @@ public final class TReal extends Token
     @Override
     public Object clone()
     {
-      return new TReal(getText(), getLine(), getPos());
+      return new TReal(getLine(), getPos());
     }
 
     @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseTReal(this);
+    }
+
+    @Override
+    public void setText(@SuppressWarnings("unused") String text)
+    {
+        throw new RuntimeException("Cannot change TReal text.");
     }
 }

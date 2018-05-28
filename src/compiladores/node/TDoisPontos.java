@@ -7,14 +7,14 @@ import compiladores.analysis.*;
 @SuppressWarnings("nls")
 public final class TDoisPontos extends Token
 {
-    public TDoisPontos(String text)
+    public TDoisPontos()
     {
-        setText(text);
+        super.setText(":");
     }
 
-    public TDoisPontos(String text, int line, int pos)
+    public TDoisPontos(int line, int pos)
     {
-        setText(text);
+        super.setText(":");
         setLine(line);
         setPos(pos);
     }
@@ -22,12 +22,18 @@ public final class TDoisPontos extends Token
     @Override
     public Object clone()
     {
-      return new TDoisPontos(getText(), getLine(), getPos());
+      return new TDoisPontos(getLine(), getPos());
     }
 
     @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseTDoisPontos(this);
+    }
+
+    @Override
+    public void setText(@SuppressWarnings("unused") String text)
+    {
+        throw new RuntimeException("Cannot change TDoisPontos text.");
     }
 }

@@ -5,16 +5,16 @@ package compiladores.node;
 import compiladores.analysis.*;
 
 @SuppressWarnings("nls")
-public final class TBooleano extends Token
+public final class TPontoEVirg extends Token
 {
-    public TBooleano()
+    public TPontoEVirg()
     {
-        super.setText("booleano");
+        super.setText(";");
     }
 
-    public TBooleano(int line, int pos)
+    public TPontoEVirg(int line, int pos)
     {
-        super.setText("booleano");
+        super.setText(";");
         setLine(line);
         setPos(pos);
     }
@@ -22,18 +22,18 @@ public final class TBooleano extends Token
     @Override
     public Object clone()
     {
-      return new TBooleano(getLine(), getPos());
+      return new TPontoEVirg(getLine(), getPos());
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseTBooleano(this);
+        ((Analysis) sw).caseTPontoEVirg(this);
     }
 
     @Override
     public void setText(@SuppressWarnings("unused") String text)
     {
-        throw new RuntimeException("Cannot change TBooleano text.");
+        throw new RuntimeException("Cannot change TPontoEVirg text.");
     }
 }

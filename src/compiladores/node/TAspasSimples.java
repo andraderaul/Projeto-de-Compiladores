@@ -7,14 +7,14 @@ import compiladores.analysis.*;
 @SuppressWarnings("nls")
 public final class TAspasSimples extends Token
 {
-    public TAspasSimples(String text)
+    public TAspasSimples()
     {
-        setText(text);
+        super.setText("\'");
     }
 
-    public TAspasSimples(String text, int line, int pos)
+    public TAspasSimples(int line, int pos)
     {
-        setText(text);
+        super.setText("\'");
         setLine(line);
         setPos(pos);
     }
@@ -22,12 +22,18 @@ public final class TAspasSimples extends Token
     @Override
     public Object clone()
     {
-      return new TAspasSimples(getText(), getLine(), getPos());
+      return new TAspasSimples(getLine(), getPos());
     }
 
     @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseTAspasSimples(this);
+    }
+
+    @Override
+    public void setText(@SuppressWarnings("unused") String text)
+    {
+        throw new RuntimeException("Cannot change TAspasSimples text.");
     }
 }

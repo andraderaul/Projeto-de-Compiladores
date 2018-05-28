@@ -7,14 +7,14 @@ import compiladores.analysis.*;
 @SuppressWarnings("nls")
 public final class TInteiro extends Token
 {
-    public TInteiro(String text)
+    public TInteiro()
     {
-        setText(text);
+        super.setText("inteiro");
     }
 
-    public TInteiro(String text, int line, int pos)
+    public TInteiro(int line, int pos)
     {
-        setText(text);
+        super.setText("inteiro");
         setLine(line);
         setPos(pos);
     }
@@ -22,12 +22,18 @@ public final class TInteiro extends Token
     @Override
     public Object clone()
     {
-      return new TInteiro(getText(), getLine(), getPos());
+      return new TInteiro(getLine(), getPos());
     }
 
     @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseTInteiro(this);
+    }
+
+    @Override
+    public void setText(@SuppressWarnings("unused") String text)
+    {
+        throw new RuntimeException("Cannot change TInteiro text.");
     }
 }
