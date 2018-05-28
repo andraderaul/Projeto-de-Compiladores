@@ -58,7 +58,7 @@
 	    {normal->comentario,comentario} comentario_fim_bloco = '*/';	           
 	    {comentario} estrela = '*';
 	    {comentario} barra = '/';
-	    comentario_linha = '//' [[32 .. 255] - ['*' + '/']]*;
+	    {normal} comentario_linha = '//' [32 .. 255]*;
 	
 	/* talvez isso aqui deva so ficar em HELPERS */
 	    dois_pontos = ':';

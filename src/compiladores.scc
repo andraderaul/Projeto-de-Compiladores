@@ -1,5 +1,5 @@
 	/* 
-		group: Jaine Conceição e Raul Andrade
+		group: Jaine Conceiçao e Raul Andrade
 		created on : 21/05/2018
 	*/
 	
@@ -58,7 +58,7 @@
 	    {normal->comentario,comentario} comentario_fim_bloco = '*/';	           
 	    {comentario} estrela = '*';
 	    {comentario} barra = '/';
-	    comentario_linha = '//' [[32 .. 255] - ['*' + '/']]*;
+	    {normal} comentario_linha = '//' [32 .. 255]*;
 	
 	/* talvez isso aqui deva so ficar em HELPERS */
 	    dois_pontos = ':';
@@ -72,7 +72,7 @@
 	    aspas_duplas = '"';
 	    sublinhado = sublinhado;
 	   
-	/* ate aqui */    
+	/* at� aqui */    
 	
 	/* operators */
 	    // aritmeticos:
