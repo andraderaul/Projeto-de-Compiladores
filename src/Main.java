@@ -26,9 +26,8 @@ public class Main {
 	                    System.out.print(token.getClass().getSimpleName());
 	                }    
             	} catch (LexerException e) {
- 	                System.out.println(e.getMessage());
- 	                token = lexer.next();
-				}
+ 	                System.out.print(e.getMessage());
+                    }
            }
            out.println();
          }

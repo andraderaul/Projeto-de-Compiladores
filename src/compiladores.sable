@@ -59,7 +59,6 @@
 	    {comentario} barra = '/';
 	    {normal} comentario_linha = '//' [32 .. 255]*;
 	
-	/* talvez isso aqui deva so ficar em HELPERS */
 	    dois_pontos = ':';
 	    ponto_e_virg = ';';
 	    virg = ',';
@@ -70,8 +69,6 @@
 	    aspas_simples = ''';
 	    aspas_duplas = '"';
 	    sublinhado = sublinhado;
-	   
-	/* até aqui */    
 	
 	/* operators */
 	    // aritmeticos:

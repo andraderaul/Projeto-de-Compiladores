@@ -1,95 +1,92 @@
-	/* 
-		group: Jaine Concei��o e Raul Andrade
-		created on : 21/05/2018
-	*/
-	
-	/* define package-prefix */
-	Package compiladores;
-	
-	Helpers
-            letra_minuscula = ['a' .. 'z'];
-	    letra_maiuscula = ['A' .. 'Z'];
-	    numero = ['0' .. '9'];
-	    sublinhado = '_';
-	    sp = ' ' ;
-	    nl = 10;
-	    tab = 9;
-	    cr = 13;
-	    letras = (letra_maiuscula | letra_minuscula)+;     
-	    tudo = [0 .. 0xFFFF];
-	
-	States 
-	    normal,
-	    comentario;
-	    
-	Tokens	    
-	 /* palavras reservadas */
-	    programa = 'programa';
-	    inicio = 'inicio';
-	    fim_programa = 'fim';
-	    se = 'se';
-	    senao = 'senao';
-	    enquanto = 'enquanto';
-	    para = 'para';
-	    avalie = 'avalie';
-	    caso = 'caso';
-	    verdadeiro = 'verdadeiro';
-	    falso = 'falso';
-	    leia = 'leia';
-	    escreva = 'escreva';
-	    inteiro = 'inteiro';
-	    real = 'real';
-	    booleano = 'booleano';
-	    string = 'caractere';
-	    nao = 'nao';
-	    e = 'e';
-	    ou = 'ou';
-	/* ate aqui*/
-	
-	    id = (sublinhado | letras) (sublinhado | letras | numero)*;
-	    num = numero*;
-	    numreal = numero+ ',' numero+;
-	    caractere = '''letra_maiuscula''' | '''letra_minuscula''' | '''numero''';
-	    blank = (sp | tab | (nl | nl cr | cr))+;
-	
-	    {normal->comentario,comentario} comentario_bloco = '/*';
-	    {comentario} comentario_corpo = [tudo - ['*' + '/']]*; 
-	    {normal->comentario,comentario} comentario_fim_bloco = '*/';	           
-	    {comentario} estrela = '*';
-	    {comentario} barra = '/';
-	    {normal} comentario_linha = '//' [32 .. 255]*;
-	
-	/* talvez isso aqui deva so ficar em HELPERS */
-	    dois_pontos = ':';
-	    ponto_e_virg = ';';
-	    virg = ',';
-	    a_parentese = '(';
-	    f_parentese = ')';
-	    a_colchete = '[';
-	    f_colchete = ']';
-	    aspas_simples = ''';
-	    aspas_duplas = '"';
-	    sublinhado = sublinhado;
-	   
-	/* at� aqui */    
-	
-	/* operators */
-	    // aritmeticos:
-	    mais = '+';
-	    menos = '-';
-	    mult = '*';
-	    div = '/';
-	    mod = '%';
-	    // relacionais
-	    maiorq = '>';
-	    menorq = '<';
-	    menor_ou_igual_q = '<=';
-	    maior_ou_igual_q = '>=';
-	    igual = '=';
-	    diferente = '<>';
-	    //atribuicao
-	    atrib = '<-';
-	
-	/* Token to be ignored */
-	Ignored Tokens
-	    blank;
+/* 
+        group: Jaine Concei玢o e Raul Andrade
+        created on : 21/05/2018
+*/
+
+/* define package-prefix */
+Package compiladores;
+
+Helpers
+    letra_minuscula = ['a' .. 'z'];
+    letra_maiuscula = ['A' .. 'Z'];
+    numero = ['0' .. '9'];
+    sublinhado = '_';
+    sp = ' ' ;
+    nl = 10;
+    tab = 9;
+    cr = 13;
+    letras = (letra_maiuscula | letra_minuscula)+;     
+    tudo = [0 .. 0xFFFF];
+
+States 
+    normal,
+    comentario;
+
+Tokens	    
+ /* palavras reservadas */
+    programa = 'programa';
+    inicio = 'inicio';
+    fim_programa = 'fim';
+    se = 'se';
+    senao = 'senao';
+    enquanto = 'enquanto';
+    para = 'para';
+    avalie = 'avalie';
+    caso = 'caso';
+    verdadeiro = 'verdadeiro';
+    falso = 'falso';
+    leia = 'leia';
+    escreva = 'escreva';
+    inteiro = 'inteiro';
+    real = 'real';
+    booleano = 'booleano';
+    string = 'caractere';
+    nao = 'nao';
+    e = 'e';
+    ou = 'ou';
+/* ate aqui*/
+
+    id = (sublinhado | letras) (sublinhado | letras | numero)*;
+    num = numero*;
+    numreal = numero+ ',' numero+;
+    caractere = '''letra_maiuscula''' | '''letra_minuscula''' | '''numero''';
+    blank = (sp | tab | (nl | nl cr | cr))+;
+
+    {normal->comentario,comentario} comentario_bloco = '/*';
+    {comentario} comentario_corpo = [tudo - ['*' + '/']]*; 
+    {normal->comentario,comentario} comentario_fim_bloco = '*/';	           
+    {comentario} estrela = '*';
+    {comentario} barra = '/';
+    {normal} comentario_linha = '//' [32 .. 255]*;
+
+    dois_pontos = ':';
+    ponto_e_virg = ';';
+    virg = ',';
+    a_parentese = '(';
+    f_parentese = ')';
+    a_colchete = '[';
+    f_colchete = ']';
+    aspas_simples = ''';
+    aspas_duplas = '"';
+    sublinhado = sublinhado;
+
+/* operators */
+    // aritmeticos:
+    mais = '+';
+    menos = '-';
+    mult = '*';
+    div = '/';
+    mod = '%';
+    // relacionais
+    maiorq = '>';
+    menorq = '<';
+    menor_ou_igual_q = '<=';
+    maior_ou_igual_q = '>=';
+    igual = '=';
+    diferente = '<>';
+    //atribuicao
+    atrib = '<-';
+
+/* Token to be ignored */
+Ignored Tokens
+    blank;
