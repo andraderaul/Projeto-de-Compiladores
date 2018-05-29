@@ -1,5 +1,5 @@
 	/* 
-		group: Jaine Conceiçao e Raul Andrade
+		group: Jaine Concei��o e Raul Andrade
 		created on : 21/05/2018
 	*/
 	
@@ -7,7 +7,7 @@
 	Package compiladores;
 	
 	Helpers
-		letra_minuscula = ['a' .. 'z'];
+            letra_minuscula = ['a' .. 'z'];
 	    letra_maiuscula = ['A' .. 'Z'];
 	    numero = ['0' .. '9'];
 	    sublinhado = '_';
@@ -16,7 +16,6 @@
 	    tab = 9;
 	    cr = 13;
 	    letras = (letra_maiuscula | letra_minuscula)+;     
-	    caractere = 'caractere';
 	    tudo = [0 .. 0xFFFF];
 	
 	States 
@@ -25,7 +24,7 @@
 	    
 	Tokens	    
 	 /* palavras reservadas */
-	 	programa = 'programa';
+	    programa = 'programa';
 	    inicio = 'inicio';
 	    fim_programa = 'fim';
 	    se = 'se';
@@ -41,13 +40,13 @@
 	    inteiro = 'inteiro';
 	    real = 'real';
 	    booleano = 'booleano';
-	    string = caractere;
+	    string = 'caractere';
 	    nao = 'nao';
 	    e = 'e';
-	   	ou = 'ou';
+	    ou = 'ou';
 	/* ate aqui*/
 	
-	    id = (sublinhado | letras)+ (sublinhado | letras | numero)*;
+	    id = (sublinhado | letras) (sublinhado | letras | numero)*;
 	    num = numero*;
 	    numreal = numero+ ',' numero+;
 	    caractere = '''letra_maiuscula''' | '''letra_minuscula''' | '''numero''';

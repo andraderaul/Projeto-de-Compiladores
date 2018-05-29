@@ -16,7 +16,6 @@
 	    tab = 9;
 	    cr = 13;
 	    letras = (letra_maiuscula | letra_minuscula)+;     
-	    caractere = 'caractere';
 	    tudo = [0 .. 0xFFFF];
 	
 	States 
@@ -41,13 +40,13 @@
 	    inteiro = 'inteiro';
 	    real = 'real';
 	    booleano = 'booleano';
-	    string = caractere;
+	    string = 'caractere';
 	    nao = 'nao';
 	    e = 'e';
 	   	ou = 'ou';
 	/* ate aqui*/
 	
-	    id = (sublinhado | letras)+ (sublinhado | letras | numero)*;
+	    id = (sublinhado | letras) (sublinhado | letras | numero)*;
 	    num = numero*;
 	    numreal = numero+ ',' numero+;
 	    caractere = '''letra_maiuscula''' | '''letra_minuscula''' | '''numero''';
