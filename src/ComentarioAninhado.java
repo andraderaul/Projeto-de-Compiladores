@@ -23,15 +23,13 @@ public class ComentarioAninhado extends Lexer {
             message = "Erro de comentario de bloco. Linha: " + token.getLine() + ", posicao: " + token.getPos() + ". : TComentarioBlocoFimErrado";
             token = null;
             throw new LexerException(null, message);
-        }
-        else {
+        } else {
             comentario = (TComentarioBloco) token;
             text = new StringBuffer(comentario.getText());
             count = 1;
             token = null; // continue to scan the input.
         }
-      }
-      else { // we were already in the comment state
+      } else { // we were already in the comment state
         text.append(token.getText()); // accumulate the text.
         if (token instanceof TComentarioLinha);
         if (token instanceof TComentarioBloco)
@@ -43,7 +41,6 @@ public class ComentarioAninhado extends Lexer {
                state = State.NORMAL;
                String message;
                message = "Erro de comentario de bloco. Linha: " + comentario.getLine() + ", posicao: " + comentario.getPos() + ".";
-               token = null;
                throw new LexerException(null, message);
            } 
             

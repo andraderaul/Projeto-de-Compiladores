@@ -1,4 +1,5 @@
 import compiladores.lexer.*;
+import compiladores.lexer.Lexer.State;
 import java.io.FileReader;
 import java.io.PushbackReader;
 import compiladores.node.* ;
@@ -19,7 +20,7 @@ public class Main {
 	                if (token instanceof EOF) {
 	                    break;
 	                }
-	                else if (token instanceof TBlank) {
+	                if (token instanceof TBlank) {
 	                    System.out.print(token.getText());
 	                }
 	                else {
@@ -27,7 +28,7 @@ public class Main {
 	                }    
             	} catch (LexerException e) {
  	                System.out.print(e.getMessage());
-                    }
+				}
            }
            out.println();
          }
