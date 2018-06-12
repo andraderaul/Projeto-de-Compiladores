@@ -9,12 +9,12 @@ public final class TAtrib extends Token
 {
     public TAtrib()
     {
-        super.setText("<-");
+        super.setText(":=");
     }
 
     public TAtrib(int line, int pos)
     {
-        super.setText("<-");
+        super.setText(":=");
         setLine(line);
         setPos(pos);
     }

@@ -14,6 +14,9 @@ public class Main {
         	 ComentarioAninhado lexer = new ComentarioAninhado(new PushbackReader(
         			 new FileReader(args[0]), 1024));
              Token token = null;
+      //       Parser parser = new Parser(lexer);
+      //       Start tree = p.parser();
+      //       tree.toString();
              while (true) {
             	try {
 	                token = lexer.next();

@@ -12,6 +12,7 @@ Helpers
     numero = ['0' .. '9'];
     sublinhado = '_';
     sp = ' ' ;
+    aspas_simples = ''';
     nl = 10;
     tab = 9;
     cr = 13;
@@ -26,12 +27,20 @@ Tokens
  /* palavras reservadas */
     programa = 'programa';
     inicio = 'inicio';
-    fim_programa = 'fim';
+    fim_programa = 'fim.';
     se = 'se';
     senao = 'senao';
+    fim_se = 'fim se';
     enquanto = 'enquanto';
+    faca = 'faca';
+    fim_enquanto = 'fim enquanto';
     para = 'para';
+    de = 'de';
+    fim_para = 'fim para';
+    repita = 'repita';
+    ate = 'ate';
     avalie = 'avalie';
+    fim_avalie = 'fim avalie';
     caso = 'caso';
     verdadeiro = 'verdadeiro';
     falso = 'falso';
@@ -40,7 +49,8 @@ Tokens
     inteiro = 'inteiro';
     real = 'real';
     booleano = 'booleano';
-    string = 'caractere';
+    string = aspas_simples [tudo - '\n'] aspas_simples;
+    const = 'const';
     nao = 'nao';
     e = 'e';
     ou = 'ou';
@@ -66,7 +76,6 @@ Tokens
     f_parentese = ')';
     a_colchete = '[';
     f_colchete = ']';
-    aspas_simples = ''';
     aspas_duplas = '"';
     sublinhado = sublinhado;
 
@@ -85,8 +94,41 @@ Tokens
     igual = '=';
     diferente = '<>';
     //atribuicao
-    atrib = '<-';
+    atrib = ':=';
 
 /* Token to be ignored */
 Ignored Tokens
     blank;
+
+Productions
+
+    start = programa id inicio declaracao_list? comando_list? fim;
+    declaracao_list = declaracao+; // aux
+    declaracao = tipo dois_pontos var_virg? var ponto_e_virg 
+                | const id valor ponto_e_virgula;
+    var_virg = var virg; // aux
+    var_list = var_virg+;// aux
+    tipo = real | inteiro | caractere | booleano;
+    var = id | id a_colchete num f_colchete;
+    valor = string | num | numreal;
+    comando_list = comando+; // aux
+    comando = var atrib exp ponto_e_virg 
+              | leia a_parentese var_virg? var f_parentese ponto_e_virg 
+              | escreva a_parentese exp_virg? exp f_parentese ponto_e_virg
+              | se a_parentese exp_logica f_parentese entao comando_list? comando
+                    senao_comando? fim_se ponto_e_virg
+              | avalie a_parentese exp f_parentese caso_comando? senao_comando2?
+                    fim_avalie ponto_e_virg
+              | enquanto a_parentese exp_logica f_parentese faca 
+                    comando_list? comando fim_enquanto ponto_e_virg
+              | repita comando_list? comando ate a_parentese exp_logica 
+                    f_parentese ponto_e_virg
+              | para var de num ate num faca comando_list_virg? comando 
+                    ponto_e_virg fim_para ponto_e_virg
+;
+    senao_comando = senao comando_list? comando; // aux 
+    senao_comando2 = senao dois_pontos comando_list? comando; // aux
+    caso_comando = caso valor dois_pontos comando_list? comando; // aux
+    comando_list_virg = comando_ponto_virg+;
+    comando_ponto_virg = comando ponto_e_virg;
+    
