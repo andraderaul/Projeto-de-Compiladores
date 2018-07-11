@@ -1,46 +1,36 @@
 import compiladores.lexer.*;
-import compiladores.lexer.Lexer.State;
 import java.io.FileReader;
 import java.io.PushbackReader;
 import compiladores.node.* ;
-import static java.lang.System.out;
-
+import compiladores.parser.Parser;
 
 public class Main {
-   public static void main(String[] args) {
-      if (args.length > 0) {
-         try {
-            /* Form our AST */
-        	 ComentarioAninhado lexer = new ComentarioAninhado(new PushbackReader(
-        			 new FileReader(args[0]), 1024));
-             Token token = null;
-      //       Parser parser = new Parser(lexer);
-      //       Start tree = p.parser();
-      //       tree.toString();
-             while (true) {
-            	try {
-	                token = lexer.next();
-	                if (token instanceof EOF) {
-	                    break;
-	                }
-	                if (token instanceof TBlank) {
-	                    System.out.print(token.getText());
-	                }
-	                else {
-	                    System.out.print(token.getClass().getSimpleName());
-	                }    
-            	} catch (LexerException e) {
- 	                System.out.print(e.getMessage());
-				}
+    public static void main(String[] args) {
+        if (args.length > 0) {
+            try {
+                /* Form our AST */
+                ComentarioAninhado lexer = new ComentarioAninhado (new PushbackReader(
+                  new FileReader(args[0]), 1024));
+                Parser p = new Parser(lexer);
+                    Start tree = p.parse();
+                    tree.toString();
+                /*while (true) {
+                    Token token = lexer.next();
+                    if (token instanceof EOF) {
+                        break;
+                    } else if (token instanceof TBlank || token instanceof TNovaLinha) {
+                        System.out.print(token.getText());
+                    } else {
+                        System.out.print(token.getClass().getSimpleName());
+                    }
+                }*/
+            } catch (Exception e) {
+              System.out.println (e) ;
            }
-           out.println();
-         }
-         catch (Exception e) {
-            System.out.println (e) ;
-         }
-      } else {
-         System.err.println("usage: java simpleAdder inputFile");
-         System.exit(1);
-      }
-   }
+        } else {
+           System.err.println("usage: java simpleAdder inputFile");
+           System.exit(1);
+        }
+    }
 }
+

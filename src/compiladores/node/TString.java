@@ -7,14 +7,14 @@ import compiladores.analysis.*;
 @SuppressWarnings("nls")
 public final class TString extends Token
 {
-    public TString()
+    public TString(String text)
     {
-        super.setText("caractere");
+        setText(text);
     }
 
-    public TString(int line, int pos)
+    public TString(String text, int line, int pos)
     {
-        super.setText("caractere");
+        setText(text);
         setLine(line);
         setPos(pos);
     }
@@ -22,18 +22,12 @@ public final class TString extends Token
     @Override
     public Object clone()
     {
-      return new TString(getLine(), getPos());
+      return new TString(getText(), getLine(), getPos());
     }
 
     @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseTString(this);
-    }
-
-    @Override
-    public void setText(@SuppressWarnings("unused") String text)
-    {
-        throw new RuntimeException("Cannot change TString text.");
     }
 }

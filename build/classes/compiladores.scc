@@ -1,5 +1,5 @@
 /* 
-        group: Jaine Concei玢o e Raul Andrade
+        group: Jaine Conceicao e Raul Andrade
         created on : 21/05/2018
 */
 
@@ -23,18 +23,20 @@ States
     normal,
     comentario;
 
-Tokens	    
+Tokens      
  /* palavras reservadas */
     programa = 'programa';
     inicio = 'inicio';
     fim_programa = 'fim.';
     se = 'se';
+    entao = 'entao';
     senao = 'senao';
     fim_se = 'fim se';
     enquanto = 'enquanto';
     faca = 'faca';
     fim_enquanto = 'fim enquanto';
     para = 'para';
+    passo = 'passo';
     de = 'de';
     fim_para = 'fim para';
     repita = 'repita';
@@ -49,22 +51,23 @@ Tokens
     inteiro = 'inteiro';
     real = 'real';
     booleano = 'booleano';
-    string = aspas_simples [tudo - '\n'] aspas_simples;
+    string = aspas_simples [tudo - nl] aspas_simples;
     const = 'const';
     nao = 'nao';
     e = 'e';
     ou = 'ou';
+    xor = 'xor';
 /* ate aqui*/
 
     id = (sublinhado | letras) (sublinhado | letras | numero)*;
-    num = numero*;
+    num = numero+;
     numreal = numero+ ',' numero+;
     caractere = '''letra_maiuscula''' | '''letra_minuscula''' | '''numero''';
     blank = (sp | tab | (nl | nl cr | cr))+;
 
     {normal->comentario,comentario} comentario_bloco = '/*';
     {comentario} comentario_corpo = [tudo - ['*' + '/']]*; 
-    {normal->comentario,comentario} comentario_fim_bloco = '*/';	           
+    {normal->comentario,comentario} comentario_fim_bloco = '*/';               
     {comentario} estrela = '*';
     {comentario} barra = '/';
     {normal} comentario_linha = '//' [32 .. 255]*;
@@ -93,6 +96,7 @@ Tokens
     maior_ou_igual_q = '>=';
     igual = '=';
     diferente = '<>';
+
     //atribuicao
     atrib = ':=';
 
@@ -102,33 +106,73 @@ Ignored Tokens
 
 Productions
 
-    start = programa id inicio declaracao_list? comando_list? fim;
-    declaracao_list = declaracao+; // aux
-    declaracao = tipo dois_pontos var_virg? var ponto_e_virg 
-                | const id valor ponto_e_virgula;
-    var_virg = var virg; // aux
-    var_list = var_virg+;// aux
-    tipo = real | inteiro | caractere | booleano;
-    var = id | id a_colchete num f_colchete;
-    valor = string | num | numreal;
-    comando_list = comando+; // aux
-    comando = var atrib exp ponto_e_virg 
-              | leia a_parentese var_virg? var f_parentese ponto_e_virg 
-              | escreva a_parentese exp_virg? exp f_parentese ponto_e_virg
-              | se a_parentese exp_logica f_parentese entao comando_list? comando
-                    senao_comando? fim_se ponto_e_virg
-              | avalie a_parentese exp f_parentese caso_comando? senao_comando2?
-                    fim_avalie ponto_e_virg
-              | enquanto a_parentese exp_logica f_parentese faca 
-                    comando_list? comando fim_enquanto ponto_e_virg
-              | repita comando_list? comando ate a_parentese exp_logica 
-                    f_parentese ponto_e_virg
-              | para var de num ate num faca comando_list_virg? comando 
-                    ponto_e_virg fim_para ponto_e_virg
-;
-    senao_comando = senao comando_list? comando; // aux 
-    senao_comando2 = senao dois_pontos comando_list? comando; // aux
-    caso_comando = caso valor dois_pontos comando_list? comando; // aux
-    comando_list_virg = comando_ponto_virg+;
-    comando_ponto_virg = comando ponto_e_virg;
+    start = {start} programa id inicio declaracao fim_programa;
+     
+    declaracao_list = {declaracao_tipo} declaracao_list tipo dois_pontos var ponto_e_virg 
+                | {declaracao_const} declaracao_list const id valor ponto_e_virg 
+                | {declaracao_dois_pontos} tipo dois_pontos var ponto_e_virg 
+                | {declaracao_const_id} const id valor ponto_e_virg; // aux
     
+    declaracao = {declaracao_lista} declaracao_list?;
+    
+    var_virg = {var_virgula} var virg; // aux
+    var_list = {var_lista} var_virg+;// aux
+    exp_virg = {exp_virg} exp virg;
+    tipo = {tipo_rea} real | {tipo_int} inteiro | {tipo_char} caractere | {tipo_bool} booleano;
+    var = {var_id} id | {var_index} id a_colchete num f_colchete;
+    valor = {val_str} string | {val_num} num | {var_numreal} numreal;
+    comando_list = {comando_lista} comando+; // aux
+
+    num_a = {num_a} num;
+    num_b = {num_b} num;
+    ponto_virg_aux = {ponto_virg_aux} ponto_e_virg;
+
+    comando = {comando_atrib} var atrib exp ponto_e_virg 
+              | {comando_leia} leia a_parentese var_virg? var f_parentese ponto_e_virg 
+              | {comando_escreva} escreva a_parentese exp_virg? exp f_parentese ponto_e_virg
+              | {comando_se} se a_parentese exp_logica f_parentese entao comando_list? comando
+                    senao_comando? fim_se ponto_e_virg
+              | {comando_avalie} avalie a_parentese exp f_parentese caso_comando? senao_comando2?
+                    fim_avalie ponto_e_virg
+              | {comando_enquanto} enquanto a_parentese exp_logica f_parentese faca 
+                    comando_list? comando fim_enquanto ponto_e_virg
+              | {comando_repita} repita comando_list? comando ate a_parentese exp_logica 
+                    f_parentese ponto_e_virg
+              | {comando_para} para var de num ate num_a faca comando_list_virg? comando 
+                    ponto_e_virg fim_para ponto_virg_aux
+              | {comando_passo} para var de num passo num_a ate num_b faca comando_list? comando 
+                    fim_para ponto_e_virg;       
+            
+    senao_comando = {comando_senao} senao comando_list? comando; // aux 
+    senao_comando2 = {comando_senao2} senao dois_pontos comando_list? comando; // aux
+    caso_comando = {comando_caso} caso valor dois_pontos comando_list? comando; // aux
+    comando_list_virg = {comando_virgula} comando_ponto_virg+;
+    comando_ponto_virg = {comando_ponto_virg} comando ponto_e_virg;
+
+    termo = {termo_mult} termo mult fator | {termo_div} termo div fator | {termo_fator} fator;
+    fator = {fator_val} valor | {fator_var} var;
+
+    exp = {exp_val} valor 
+            | {exp_var} var
+            | {exp_parenteses} a_parentese exp f_parentese
+            | {exp_negativo} menos exp
+            | {exp_mais} exp mais termo
+            | {exp_menos} exp menos termo
+            | {exp_termo} termo
+            | {exp_fator} fator
+            | {exp_logica} exp_logica;
+
+    exp_aux = {exp_aux} exp;
+    exp_logica_aux = {exp_logica_a} exp_logica;
+
+    exp_logica = {exp_logica_parenteses} a_parentese exp_logica f_parentese
+            | {exp_logica_igual} exp igual exp_aux
+            | {exp_logica_diferente} exp diferente exp_aux
+            | {exp_logica_menorigual} exp menor_ou_igual_q exp_aux
+            | {exp_logica_maiorigual} exp maior_ou_igual_q exp_aux
+            | {exp_logica_menorq} exp menorq exp_aux
+            | {exp_logica_maiorq} exp maiorq exp_aux
+            | {exp_logica_nao} nao exp_logica
+            | {exp_logica_e} exp_logica e exp_logica_aux
+            | {exp_logica_ou} exp_logica ou exp_logica_aux
+            | {exp_logica_xor} exp_logica xor exp_logica_aux;
