@@ -154,73 +154,73 @@ class TokenIndex extends AnalysisAdapter
     }
 
     @Override
-    public void caseTReal(@SuppressWarnings("unused") TReal node)
+    public void caseTCaractere(@SuppressWarnings("unused") TCaractere node)
     {
         this.index = 24;
     }
 
     @Override
-    public void caseTBooleano(@SuppressWarnings("unused") TBooleano node)
+    public void caseTReal(@SuppressWarnings("unused") TReal node)
     {
         this.index = 25;
     }
 
     @Override
-    public void caseTConst(@SuppressWarnings("unused") TConst node)
+    public void caseTBooleano(@SuppressWarnings("unused") TBooleano node)
     {
         this.index = 26;
     }
 
     @Override
-    public void caseTNao(@SuppressWarnings("unused") TNao node)
+    public void caseTConst(@SuppressWarnings("unused") TConst node)
     {
         this.index = 27;
     }
 
     @Override
-    public void caseTE(@SuppressWarnings("unused") TE node)
+    public void caseTNao(@SuppressWarnings("unused") TNao node)
     {
         this.index = 28;
     }
 
     @Override
-    public void caseTOu(@SuppressWarnings("unused") TOu node)
+    public void caseTE(@SuppressWarnings("unused") TE node)
     {
         this.index = 29;
     }
 
     @Override
-    public void caseTXor(@SuppressWarnings("unused") TXor node)
+    public void caseTOu(@SuppressWarnings("unused") TOu node)
     {
         this.index = 30;
     }
 
     @Override
-    public void caseTId(@SuppressWarnings("unused") TId node)
+    public void caseTXor(@SuppressWarnings("unused") TXor node)
     {
         this.index = 31;
     }
 
     @Override
-    public void caseTString(@SuppressWarnings("unused") TString node)
+    public void caseTId(@SuppressWarnings("unused") TId node)
     {
         this.index = 32;
     }
 
     @Override
-    public void caseTNum(@SuppressWarnings("unused") TNum node)
+    public void caseTString(@SuppressWarnings("unused") TString node)
     {
         this.index = 33;
     }
 
     @Override
-    public void caseTNumreal(@SuppressWarnings("unused") TNumreal node)
+    public void caseTNum(@SuppressWarnings("unused") TNum node)
     {
         this.index = 34;
     }
 
     @Override
-    public void caseTCaractere(@SuppressWarnings("unused") TCaractere node)
+    public void caseTNumreal(@SuppressWarnings("unused") TNumreal node)
     {
         this.index = 35;
     }

@@ -8,7 +8,7 @@ import compiladores.analysis.*;
 public final class AFatorParentesesFator extends PFator
 {
     private TAParentese _aParentese_;
-    private PFator _fator_;
+    private PExp _exp_;
     private TFParentese _fParentese_;
 
     public AFatorParentesesFator()
@@ -18,13 +18,13 @@ public final class AFatorParentesesFator extends PFator
 
     public AFatorParentesesFator(
         @SuppressWarnings("hiding") TAParentese _aParentese_,
-        @SuppressWarnings("hiding") PFator _fator_,
+        @SuppressWarnings("hiding") PExp _exp_,
         @SuppressWarnings("hiding") TFParentese _fParentese_)
     {
         // Constructor
         setAParentese(_aParentese_);
 
-        setFator(_fator_);
+        setExp(_exp_);
 
         setFParentese(_fParentese_);
 
@@ -35,7 +35,7 @@ public final class AFatorParentesesFator extends PFator
     {
         return new AFatorParentesesFator(
             cloneNode(this._aParentese_),
-            cloneNode(this._fator_),
+            cloneNode(this._exp_),
             cloneNode(this._fParentese_));
     }
 
@@ -70,16 +70,16 @@ public final class AFatorParentesesFator extends PFator
         this._aParentese_ = node;
     }
 
-    public PFator getFator()
+    public PExp getExp()
     {
-        return this._fator_;
+        return this._exp_;
     }
 
-    public void setFator(PFator node)
+    public void setExp(PExp node)
     {
-        if(this._fator_ != null)
+        if(this._exp_ != null)
         {
-            this._fator_.parent(null);
+            this._exp_.parent(null);
         }
 
         if(node != null)
@@ -92,7 +92,7 @@ public final class AFatorParentesesFator extends PFator
             node.parent(this);
         }
 
-        this._fator_ = node;
+        this._exp_ = node;
     }
 
     public TFParentese getFParentese()
@@ -125,7 +125,7 @@ public final class AFatorParentesesFator extends PFator
     {
         return ""
             + toString(this._aParentese_)
-            + toString(this._fator_)
+            + toString(this._exp_)
             + toString(this._fParentese_);
     }
 
@@ -139,9 +139,9 @@ public final class AFatorParentesesFator extends PFator
             return;
         }
 
-        if(this._fator_ == child)
+        if(this._exp_ == child)
         {
-            this._fator_ = null;
+            this._exp_ = null;
             return;
         }
 
@@ -164,9 +164,9 @@ public final class AFatorParentesesFator extends PFator
             return;
         }
 
-        if(this._fator_ == oldChild)
+        if(this._exp_ == oldChild)
         {
-            setFator((PFator) newChild);
+            setExp((PExp) newChild);
             return;
         }
 

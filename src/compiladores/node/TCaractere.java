@@ -7,14 +7,14 @@ import compiladores.analysis.*;
 @SuppressWarnings("nls")
 public final class TCaractere extends Token
 {
-    public TCaractere(String text)
+    public TCaractere()
     {
-        setText(text);
+        super.setText("caractere");
     }
 
-    public TCaractere(String text, int line, int pos)
+    public TCaractere(int line, int pos)
     {
-        setText(text);
+        super.setText("caractere");
         setLine(line);
         setPos(pos);
     }
@@ -22,12 +22,18 @@ public final class TCaractere extends Token
     @Override
     public Object clone()
     {
-      return new TCaractere(getText(), getLine(), getPos());
+      return new TCaractere(getLine(), getPos());
     }
 
     @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseTCaractere(this);
+    }
+
+    @Override
+    public void setText(@SuppressWarnings("unused") String text)
+    {
+        throw new RuntimeException("Cannot change TCaractere text.");
     }
 }

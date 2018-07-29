@@ -64,9 +64,9 @@ public interface Analysis extends Switch
     void caseAExpLogicaEExpLogica(AExpLogicaEExpLogica node);
     void caseAExpLogicaOuExpLogica(AExpLogicaOuExpLogica node);
     void caseAExpLogicaXorExpLogica(AExpLogicaXorExpLogica node);
-    void caseAExpLogicaNaoExpLogica(AExpLogicaNaoExpLogica node);
     void caseAExpLogicaTermoExpLogica(AExpLogicaTermoExpLogica node);
     void caseAElogicaTermoParentesesExpLogicaTermo(AElogicaTermoParentesesExpLogicaTermo node);
+    void caseANaoElogicaTermoExpLogicaTermo(ANaoElogicaTermoExpLogicaTermo node);
     void caseAElogicaTermoFatorExpLogicaTermo(AElogicaTermoFatorExpLogicaTermo node);
     void caseAElogicaFatorMenorigualExpLogicaFator(AElogicaFatorMenorigualExpLogicaFator node);
     void caseAElogicaFatorMaiorigualExpLogicaFator(AElogicaFatorMaiorigualExpLogicaFator node);
@@ -101,6 +101,7 @@ public interface Analysis extends Switch
     void caseTLeia(TLeia node);
     void caseTEscreva(TEscreva node);
     void caseTInteiro(TInteiro node);
+    void caseTCaractere(TCaractere node);
     void caseTReal(TReal node);
     void caseTBooleano(TBooleano node);
     void caseTConst(TConst node);
@@ -112,7 +113,6 @@ public interface Analysis extends Switch
     void caseTString(TString node);
     void caseTNum(TNum node);
     void caseTNumreal(TNumreal node);
-    void caseTCaractere(TCaractere node);
     void caseTBlank(TBlank node);
     void caseTComentarioBloco(TComentarioBloco node);
     void caseTComentarioCorpo(TComentarioCorpo node);

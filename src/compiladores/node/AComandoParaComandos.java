@@ -12,13 +12,12 @@ public final class AComandoParaComandos extends PComandos
     private TDe _de_;
     private TNum _num_;
     private TAte _ate_;
-    private PNumA _numA_;
+    private TNum _a_;
     private TFaca _faca_;
-    private PComandoListVirg _comandoListVirg_;
+    private PComandoList _comandoList_;
     private PComandos _comandos_;
-    private TPontoEVirg _pontoEVirg_;
     private TFimPara _fimPara_;
-    private PPontoVirgAux _pontoVirgAux_;
+    private TPontoEVirg _pontoEVirg_;
 
     public AComandoParaComandos()
     {
@@ -31,13 +30,12 @@ public final class AComandoParaComandos extends PComandos
         @SuppressWarnings("hiding") TDe _de_,
         @SuppressWarnings("hiding") TNum _num_,
         @SuppressWarnings("hiding") TAte _ate_,
-        @SuppressWarnings("hiding") PNumA _numA_,
+        @SuppressWarnings("hiding") TNum _a_,
         @SuppressWarnings("hiding") TFaca _faca_,
-        @SuppressWarnings("hiding") PComandoListVirg _comandoListVirg_,
+        @SuppressWarnings("hiding") PComandoList _comandoList_,
         @SuppressWarnings("hiding") PComandos _comandos_,
-        @SuppressWarnings("hiding") TPontoEVirg _pontoEVirg_,
         @SuppressWarnings("hiding") TFimPara _fimPara_,
-        @SuppressWarnings("hiding") PPontoVirgAux _pontoVirgAux_)
+        @SuppressWarnings("hiding") TPontoEVirg _pontoEVirg_)
     {
         // Constructor
         setPara(_para_);
@@ -50,19 +48,17 @@ public final class AComandoParaComandos extends PComandos
 
         setAte(_ate_);
 
-        setNumA(_numA_);
+        setA(_a_);
 
         setFaca(_faca_);
 
-        setComandoListVirg(_comandoListVirg_);
+        setComandoList(_comandoList_);
 
         setComandos(_comandos_);
 
-        setPontoEVirg(_pontoEVirg_);
-
         setFimPara(_fimPara_);
 
-        setPontoVirgAux(_pontoVirgAux_);
+        setPontoEVirg(_pontoEVirg_);
 
     }
 
@@ -75,13 +71,12 @@ public final class AComandoParaComandos extends PComandos
             cloneNode(this._de_),
             cloneNode(this._num_),
             cloneNode(this._ate_),
-            cloneNode(this._numA_),
+            cloneNode(this._a_),
             cloneNode(this._faca_),
-            cloneNode(this._comandoListVirg_),
+            cloneNode(this._comandoList_),
             cloneNode(this._comandos_),
-            cloneNode(this._pontoEVirg_),
             cloneNode(this._fimPara_),
-            cloneNode(this._pontoVirgAux_));
+            cloneNode(this._pontoEVirg_));
     }
 
     @Override
@@ -215,16 +210,16 @@ public final class AComandoParaComandos extends PComandos
         this._ate_ = node;
     }
 
-    public PNumA getNumA()
+    public TNum getA()
     {
-        return this._numA_;
+        return this._a_;
     }
 
-    public void setNumA(PNumA node)
+    public void setA(TNum node)
     {
-        if(this._numA_ != null)
+        if(this._a_ != null)
         {
-            this._numA_.parent(null);
+            this._a_.parent(null);
         }
 
         if(node != null)
@@ -237,7 +232,7 @@ public final class AComandoParaComandos extends PComandos
             node.parent(this);
         }
 
-        this._numA_ = node;
+        this._a_ = node;
     }
 
     public TFaca getFaca()
@@ -265,16 +260,16 @@ public final class AComandoParaComandos extends PComandos
         this._faca_ = node;
     }
 
-    public PComandoListVirg getComandoListVirg()
+    public PComandoList getComandoList()
     {
-        return this._comandoListVirg_;
+        return this._comandoList_;
     }
 
-    public void setComandoListVirg(PComandoListVirg node)
+    public void setComandoList(PComandoList node)
     {
-        if(this._comandoListVirg_ != null)
+        if(this._comandoList_ != null)
         {
-            this._comandoListVirg_.parent(null);
+            this._comandoList_.parent(null);
         }
 
         if(node != null)
@@ -287,7 +282,7 @@ public final class AComandoParaComandos extends PComandos
             node.parent(this);
         }
 
-        this._comandoListVirg_ = node;
+        this._comandoList_ = node;
     }
 
     public PComandos getComandos()
@@ -315,31 +310,6 @@ public final class AComandoParaComandos extends PComandos
         this._comandos_ = node;
     }
 
-    public TPontoEVirg getPontoEVirg()
-    {
-        return this._pontoEVirg_;
-    }
-
-    public void setPontoEVirg(TPontoEVirg node)
-    {
-        if(this._pontoEVirg_ != null)
-        {
-            this._pontoEVirg_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._pontoEVirg_ = node;
-    }
-
     public TFimPara getFimPara()
     {
         return this._fimPara_;
@@ -365,16 +335,16 @@ public final class AComandoParaComandos extends PComandos
         this._fimPara_ = node;
     }
 
-    public PPontoVirgAux getPontoVirgAux()
+    public TPontoEVirg getPontoEVirg()
     {
-        return this._pontoVirgAux_;
+        return this._pontoEVirg_;
     }
 
-    public void setPontoVirgAux(PPontoVirgAux node)
+    public void setPontoEVirg(TPontoEVirg node)
     {
-        if(this._pontoVirgAux_ != null)
+        if(this._pontoEVirg_ != null)
         {
-            this._pontoVirgAux_.parent(null);
+            this._pontoEVirg_.parent(null);
         }
 
         if(node != null)
@@ -387,7 +357,7 @@ public final class AComandoParaComandos extends PComandos
             node.parent(this);
         }
 
-        this._pontoVirgAux_ = node;
+        this._pontoEVirg_ = node;
     }
 
     @Override
@@ -399,13 +369,12 @@ public final class AComandoParaComandos extends PComandos
             + toString(this._de_)
             + toString(this._num_)
             + toString(this._ate_)
-            + toString(this._numA_)
+            + toString(this._a_)
             + toString(this._faca_)
-            + toString(this._comandoListVirg_)
+            + toString(this._comandoList_)
             + toString(this._comandos_)
-            + toString(this._pontoEVirg_)
             + toString(this._fimPara_)
-            + toString(this._pontoVirgAux_);
+            + toString(this._pontoEVirg_);
     }
 
     @Override
@@ -442,9 +411,9 @@ public final class AComandoParaComandos extends PComandos
             return;
         }
 
-        if(this._numA_ == child)
+        if(this._a_ == child)
         {
-            this._numA_ = null;
+            this._a_ = null;
             return;
         }
 
@@ -454,9 +423,9 @@ public final class AComandoParaComandos extends PComandos
             return;
         }
 
-        if(this._comandoListVirg_ == child)
+        if(this._comandoList_ == child)
         {
-            this._comandoListVirg_ = null;
+            this._comandoList_ = null;
             return;
         }
 
@@ -466,21 +435,15 @@ public final class AComandoParaComandos extends PComandos
             return;
         }
 
-        if(this._pontoEVirg_ == child)
-        {
-            this._pontoEVirg_ = null;
-            return;
-        }
-
         if(this._fimPara_ == child)
         {
             this._fimPara_ = null;
             return;
         }
 
-        if(this._pontoVirgAux_ == child)
+        if(this._pontoEVirg_ == child)
         {
-            this._pontoVirgAux_ = null;
+            this._pontoEVirg_ = null;
             return;
         }
 
@@ -521,9 +484,9 @@ public final class AComandoParaComandos extends PComandos
             return;
         }
 
-        if(this._numA_ == oldChild)
+        if(this._a_ == oldChild)
         {
-            setNumA((PNumA) newChild);
+            setA((TNum) newChild);
             return;
         }
 
@@ -533,9 +496,9 @@ public final class AComandoParaComandos extends PComandos
             return;
         }
 
-        if(this._comandoListVirg_ == oldChild)
+        if(this._comandoList_ == oldChild)
         {
-            setComandoListVirg((PComandoListVirg) newChild);
+            setComandoList((PComandoList) newChild);
             return;
         }
 
@@ -545,21 +508,15 @@ public final class AComandoParaComandos extends PComandos
             return;
         }
 
-        if(this._pontoEVirg_ == oldChild)
-        {
-            setPontoEVirg((TPontoEVirg) newChild);
-            return;
-        }
-
         if(this._fimPara_ == oldChild)
         {
             setFimPara((TFimPara) newChild);
             return;
         }
 
-        if(this._pontoVirgAux_ == oldChild)
+        if(this._pontoEVirg_ == oldChild)
         {
-            setPontoVirgAux((PPontoVirgAux) newChild);
+            setPontoEVirg((TPontoEVirg) newChild);
             return;
         }
 

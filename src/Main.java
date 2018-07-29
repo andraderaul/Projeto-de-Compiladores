@@ -13,7 +13,7 @@ public class Main {
                   new FileReader(args[0]), 1024));
                 Parser p = new Parser(lexer);
                     Start tree = p.parse();
-                    tree.toString();
+                    System.out.println(tree.toString());
                 /*while (true) {
                     Token token = lexer.next();
                     if (token instanceof EOF) {

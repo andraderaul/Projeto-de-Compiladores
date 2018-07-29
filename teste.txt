@@ -1,4 +1,59 @@
-programa primeiro
+programa teste
 inicio
-	real: a;
+ inteiro: z,a,b,c;
+ b := 9;  
+ leia(b);
+ escreva(a,b,c);
+ 
+ para a de 1 ate 5 faca 
+  b := 0;
+  c := 10;
+ fim para; 
+ 
+ 
+ para a de 1 passo 2 ate 11 faca 
+  c := 10;
+  d := 2; 
+ fim para;
+  
+ 
+ se ( (a + b) > (b + c)) entao 
+  leia(b); 
+  se ((a<b)  e  (b<a)) entao 
+   escreva(a);
+  fim se; 
+ senao
+  escreva(a,b,c);   
+ fim se; 
+ 
+ 
+ se ( (2=4) ) entao 
+  escreva(a,b,c);      
+ fim se;  
+ 
+ 
+ avalie ( 5 * 4 ) 
+  caso 1: b:= 1;
+  caso 2: c:= 2;
+  caso 3: d:= 3; 
+  senao:
+   z:= 4;    
+ fim avalie;  
+ 
+ avalie ( b ) 
+  caso 1: b:= 2;     
+ fim avalie;    
+  
+ 
+ enquanto(6 > 5 ) faca 
+  x := 10;
+  y := 10; 
+ fim enquanto;    
+   
+ repita 
+  z := 98;
+  w := 100;
+  y := 99; 
+ ate (5 < 6);
+ 
 fim.

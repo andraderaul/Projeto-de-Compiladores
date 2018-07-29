@@ -387,12 +387,6 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
-    public void caseAExpLogicaNaoExpLogica(AExpLogicaNaoExpLogica node)
-    {
-        defaultCase(node);
-    }
-
-    @Override
     public void caseAExpLogicaTermoExpLogica(AExpLogicaTermoExpLogica node)
     {
         defaultCase(node);
@@ -400,6 +394,12 @@ public class AnalysisAdapter implements Analysis
 
     @Override
     public void caseAElogicaTermoParentesesExpLogicaTermo(AElogicaTermoParentesesExpLogicaTermo node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseANaoElogicaTermoExpLogicaTermo(ANaoElogicaTermoExpLogicaTermo node)
     {
         defaultCase(node);
     }
@@ -603,6 +603,12 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
+    public void caseTCaractere(TCaractere node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
     public void caseTReal(TReal node)
     {
         defaultCase(node);
@@ -664,12 +670,6 @@ public class AnalysisAdapter implements Analysis
 
     @Override
     public void caseTNumreal(TNumreal node)
-    {
-        defaultCase(node);
-    }
-
-    @Override
-    public void caseTCaractere(TCaractere node)
     {
         defaultCase(node);
     }

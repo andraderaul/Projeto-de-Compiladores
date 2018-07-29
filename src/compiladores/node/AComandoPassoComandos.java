@@ -12,9 +12,9 @@ public final class AComandoPassoComandos extends PComandos
     private TDe _de_;
     private TNum _num_;
     private TPasso _passo_;
-    private PNumA _numA_;
+    private TNum _a_;
     private TAte _ate_;
-    private PNumB _numB_;
+    private TNum _b_;
     private TFaca _faca_;
     private PComandoList _comandoList_;
     private PComandos _comandos_;
@@ -32,9 +32,9 @@ public final class AComandoPassoComandos extends PComandos
         @SuppressWarnings("hiding") TDe _de_,
         @SuppressWarnings("hiding") TNum _num_,
         @SuppressWarnings("hiding") TPasso _passo_,
-        @SuppressWarnings("hiding") PNumA _numA_,
+        @SuppressWarnings("hiding") TNum _a_,
         @SuppressWarnings("hiding") TAte _ate_,
-        @SuppressWarnings("hiding") PNumB _numB_,
+        @SuppressWarnings("hiding") TNum _b_,
         @SuppressWarnings("hiding") TFaca _faca_,
         @SuppressWarnings("hiding") PComandoList _comandoList_,
         @SuppressWarnings("hiding") PComandos _comandos_,
@@ -52,11 +52,11 @@ public final class AComandoPassoComandos extends PComandos
 
         setPasso(_passo_);
 
-        setNumA(_numA_);
+        setA(_a_);
 
         setAte(_ate_);
 
-        setNumB(_numB_);
+        setB(_b_);
 
         setFaca(_faca_);
 
@@ -79,9 +79,9 @@ public final class AComandoPassoComandos extends PComandos
             cloneNode(this._de_),
             cloneNode(this._num_),
             cloneNode(this._passo_),
-            cloneNode(this._numA_),
+            cloneNode(this._a_),
             cloneNode(this._ate_),
-            cloneNode(this._numB_),
+            cloneNode(this._b_),
             cloneNode(this._faca_),
             cloneNode(this._comandoList_),
             cloneNode(this._comandos_),
@@ -220,16 +220,16 @@ public final class AComandoPassoComandos extends PComandos
         this._passo_ = node;
     }
 
-    public PNumA getNumA()
+    public TNum getA()
     {
-        return this._numA_;
+        return this._a_;
     }
 
-    public void setNumA(PNumA node)
+    public void setA(TNum node)
     {
-        if(this._numA_ != null)
+        if(this._a_ != null)
         {
-            this._numA_.parent(null);
+            this._a_.parent(null);
         }
 
         if(node != null)
@@ -242,7 +242,7 @@ public final class AComandoPassoComandos extends PComandos
             node.parent(this);
         }
 
-        this._numA_ = node;
+        this._a_ = node;
     }
 
     public TAte getAte()
@@ -270,16 +270,16 @@ public final class AComandoPassoComandos extends PComandos
         this._ate_ = node;
     }
 
-    public PNumB getNumB()
+    public TNum getB()
     {
-        return this._numB_;
+        return this._b_;
     }
 
-    public void setNumB(PNumB node)
+    public void setB(TNum node)
     {
-        if(this._numB_ != null)
+        if(this._b_ != null)
         {
-            this._numB_.parent(null);
+            this._b_.parent(null);
         }
 
         if(node != null)
@@ -292,7 +292,7 @@ public final class AComandoPassoComandos extends PComandos
             node.parent(this);
         }
 
-        this._numB_ = node;
+        this._b_ = node;
     }
 
     public TFaca getFaca()
@@ -429,9 +429,9 @@ public final class AComandoPassoComandos extends PComandos
             + toString(this._de_)
             + toString(this._num_)
             + toString(this._passo_)
-            + toString(this._numA_)
+            + toString(this._a_)
             + toString(this._ate_)
-            + toString(this._numB_)
+            + toString(this._b_)
             + toString(this._faca_)
             + toString(this._comandoList_)
             + toString(this._comandos_)
@@ -473,9 +473,9 @@ public final class AComandoPassoComandos extends PComandos
             return;
         }
 
-        if(this._numA_ == child)
+        if(this._a_ == child)
         {
-            this._numA_ = null;
+            this._a_ = null;
             return;
         }
 
@@ -485,9 +485,9 @@ public final class AComandoPassoComandos extends PComandos
             return;
         }
 
-        if(this._numB_ == child)
+        if(this._b_ == child)
         {
-            this._numB_ = null;
+            this._b_ = null;
             return;
         }
 
@@ -558,9 +558,9 @@ public final class AComandoPassoComandos extends PComandos
             return;
         }
 
-        if(this._numA_ == oldChild)
+        if(this._a_ == oldChild)
         {
-            setNumA((PNumA) newChild);
+            setA((TNum) newChild);
             return;
         }
 
@@ -570,9 +570,9 @@ public final class AComandoPassoComandos extends PComandos
             return;
         }
 
-        if(this._numB_ == oldChild)
+        if(this._b_ == oldChild)
         {
-            setNumB((PNumB) newChild);
+            setB((TNum) newChild);
             return;
         }
 

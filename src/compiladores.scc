@@ -49,6 +49,7 @@ Tokens
     leia = 'leia';
     escreva = 'escreva';
     inteiro = 'inteiro';
+    caractere = 'caractere';
     real = 'real';
     booleano = 'booleano';
     const = 'const';
@@ -62,7 +63,7 @@ Tokens
     string = aspas_simples [tudo - [nl + aspas_simples]]* aspas_simples;
     num = numero+;
     numreal = numero+ ',' numero+;
-    caractere = '''letra_maiuscula''' | '''letra_minuscula''' | '''numero''';
+    //caractere = '''letra_maiuscula''' | '''letra_minuscula''' | '''numero''';
     blank = (sp | tab | (nl | nl cr | cr))+;
 
     {normal->comentario,comentario} comentario_bloco = '/*';
@@ -129,9 +130,9 @@ Productions
                     comando_list? comandos fim_enquanto ponto_e_virg
               | {comando_repita} repita comando_list? comandos ate a_parentese exp_logica 
                     f_parentese ponto_e_virg
-              | {comando_para} para var de num ate num_a faca comando_list_virg? comandos 
-                    ponto_e_virg fim_para ponto_virg_aux
-              | {comando_passo} para var de num passo num_a ate num_b faca comando_list? comandos 
+              | {comando_para} para var de num ate [a]:num faca comando_list? comandos 
+                    fim_para ponto_e_virg
+              | {comando_passo} para var de num passo [a]:num ate [b]:num faca comando_list? comandos 
                     fim_para ponto_e_virg;
                    
     // AUXILIARES PARA COMANDOS                
@@ -154,7 +155,7 @@ Productions
     comando_ponto_virg = {comando_ponto_virg} comandos ponto_e_virg;
     comando_list_virg = {comando_virgula} comando_ponto_virg+;
 
-    //####################### EXP ###########################
+  //####################### EXP ###########################
     exp = {exp_soma} exp mais termo
             | {exp_subtracao} exp menos termo
             | {exp_termo} termo;
@@ -166,16 +167,16 @@ Productions
     fator = {fator_val} valor 
             | {fator_var} var
             | {fator_negativo} menos fator
-            | {fator_parenteses} a_parentese fator f_parentese;
+            | {fator_parenteses} a_parentese exp f_parentese;
 
     //####################### EXP_LOGICA ###########################
     exp_logica = {exp_logica_e} exp_logica e exp_logica_termo
             | {exp_logica_ou} exp_logica ou exp_logica_termo
             | {exp_logica_xor} exp_logica xor exp_logica_termo
-            | {exp_logica_nao} nao exp_logica_termo
             | {exp_logica_termo} exp_logica_termo; 
 
     exp_logica_termo = {elogica_termo_parenteses} a_parentese exp_logica f_parentese
+            | {nao_elogica_termo} nao exp_logica_termo
             | {elogica_termo_fator} exp_logica_fator;
 
     exp_logica_fator = {elogica_fator_menorigual} exp menor_ou_igual_q termo
