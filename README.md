@@ -123,7 +123,7 @@ var : ID | ID '[' N_INT ']'
 
 valor : STRING | N_INT | N_REAL
 
-comando : var '<-' exp ';'
+comando : var ':=' exp ';'
 | 'leia' '(' {var ','} var ')' ';'
 | 'escreva' '(' {exp ','} exp ')' ';'
 | 'se' '(' exp-logica ')' 'entao' {comando} comando ['senao' {comando}
@@ -133,7 +133,7 @@ comando] 'fim se' ';'
 | 'enquanto' '(' exp-logica ')' 'faca' {comando} comando 'fim enquanto'
 ';'
 | 'repita' {comando} comando 'ate' '(' exp-logica ')' ';'
-| 'para' var 'de' N_INT 'ate' N_INT 'faca' {comando ';'} comando ';'
+| 'para' var 'de' N_INT 'ate' N_INT 'faca' {comando} comando
 'fim para' ';'
 | 'para' var 'de' N_INT 'passo' N_INT 'ate' N_INT 'faca' {comando}
 comando 'fim para' ';'
