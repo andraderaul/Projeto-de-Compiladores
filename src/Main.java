@@ -14,6 +14,7 @@ public class Main {
                 Parser p = new Parser(lexer);
                     Start tree = p.parse();
                     System.out.println(tree.toString());
+                    System.out.println("\nAnálise Sintática realizada com sucesso!");
                 /*while (true) {
                     Token token = lexer.next();
                     if (token instanceof EOF) {
