@@ -1,0 +1,26 @@
+programa teste21
+
+inicio
+
+	inteiro: a;
+	inteiro: b;
+	const PI 3,14;
+
+
+	a :=  (-1-2);
+
+	a :=  (-1+-2);
+
+
+
+	se ( a+1 > 2 ) entao
+		escreva('MAIOR');
+	fim se;
+
+    /*
+	se ( a+1 ) entao //Nao funciona
+		escreva('MAIOR');
+	fim se;
+*/
+
+fim.

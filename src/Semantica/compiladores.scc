@@ -1,0 +1,277 @@
+/* 
+        group: Jaine Conceicao e Raul Andrade
+        created on : 21/05/2018
+*/
+
+/* define package-prefix */
+Package compiladores;
+
+Helpers
+    letra_minuscula = ['a' .. 'z'];
+    letra_maiuscula = ['A' .. 'Z'];
+    numero = ['0' .. '9'];
+    sublinhado = '_';
+    sp = ' ' ;
+    aspas_simples = ''';
+    nl = 10;
+    tab = 9;
+    cr = 13;
+    letras = (letra_maiuscula | letra_minuscula)+;     
+    tudo = [0 .. 0xFFFF];
+
+States 
+    normal,
+    comentario;
+
+Tokens      
+ /* palavras reservadas */
+    programa = 'programa';
+    inicio = 'inicio';
+    fim_programa = 'fim.';
+    se = 'se';
+    entao = 'entao';
+    senao = 'senao';
+    fim_se = 'fim se';
+    enquanto = 'enquanto';
+    faca = 'faca';
+    fim_enquanto = 'fim enquanto';
+    para = 'para';
+    passo = 'passo';
+    de = 'de';
+    fim_para = 'fim para';
+    repita = 'repita';
+    ate = 'ate';
+    avalie = 'avalie';
+    fim_avalie = 'fim avalie';
+    caso = 'caso';
+    verdadeiro = 'verdadeiro';
+    falso = 'falso';
+    leia = 'leia';
+    escreva = 'escreva';
+    inteiro = 'inteiro';
+    caractere = 'caractere';
+    real = 'real';
+    booleano = 'booleano';
+    const = 'const';
+    nao = 'nao';
+    e = 'e';
+    ou = 'ou';
+    xor = 'xor';
+/* ate aqui*/
+
+    id = (sublinhado | letras) (sublinhado | letras | numero)*;
+    string = aspas_simples [tudo - [nl + aspas_simples]]* aspas_simples;
+    num = numero+;
+    numreal = numero+ ',' numero+;
+    blank = (sp | tab | (nl | nl cr | cr))+;
+
+    {normal->comentario,comentario} comentario_bloco = '/*';
+    {comentario} comentario_corpo = [tudo - ['*' + '/']]*; 
+    {normal->comentario,comentario} comentario_fim_bloco = '*/';               
+    {comentario} estrela = '*';
+    {comentario} barra = '/';
+    {normal} comentario_linha = '//' [32 .. 255]*;
+
+    dois_pontos = ':';
+    ponto_e_virg = ';';
+    virg = ',';
+    a_parentese = '(';
+    f_parentese = ')';
+    a_colchete = '[';
+    f_colchete = ']';
+    aspas_duplas = '"';
+    sublinhado = sublinhado;
+
+/* operators */
+    // aritmeticos:
+    mais = '+';
+    menos = '-';
+    mult = '*';
+    div = '/';
+    mod = '%';
+    // relacionais
+    maiorq = '>';
+    menorq = '<';
+    menor_ou_igual_q = '<=';
+    maior_ou_igual_q = '>=';
+    igual = '=';
+    diferente = '<>';
+    //atribuicao
+    atrib = ':=';
+
+/* Token to be ignored */
+Ignored Tokens
+    blank,
+    comentario_bloco,
+    comentario_fim_bloco,
+    comentario_linha;
+
+Productions
+
+    start = programa id inicio declaracao comando fim_programa
+    {-> New start(declaracao, comando)};
+
+    //####################### DECLARACAO ###########################
+    declaracoes {->declaracoes} = {tipo} tipo dois_pontos var_list* var ponto_e_virg 
+        {-> New declaracoes.tipo(tipo, [var_list.var], var)}
+        | {const} const id valor ponto_e_virg 
+        {-> New declaracoes.const(id, valor)}
+    ;
+         
+    declaracao = declaracoes*; 
+
+    tipo = {real} real      {-> New tipo.real(real)}
+        | {int} inteiro     {-> New tipo.int(inteiro)}
+        | {char} caractere  {-> New tipo.char(caractere)}
+        | {booleano} booleano   {-> New tipo.booleano(booleano)}
+    ;
+
+    var_list {-> var} = var virg {-> var};
+
+    var  = {id} id {-> New var.id(id)}
+        | {index} id a_colchete num f_colchete {-> New var.index(id, num)}
+    ;
+
+    valor = {str} string {-> New valor.str(string)}
+        | {num} num  {-> New valor.num(num)}
+        | {numreal} numreal  {-> New valor.numreal(numreal)}
+    ;  
+    
+    //####################### COMANDO ###########################
+    comando = comandos*;
+    comando_list {-> comandos} = {comando_list} comandos {-> comandos};
+
+    comandos =   //exp ou  exp_logica em atrib, escreva, avalie
+        {atrib} var atrib exp ponto_e_virg {-> New comandos.atrib(var, exp)}
+        | {leia} leia a_parentese var_list* var f_parentese ponto_e_virg 
+        {-> New comandos.leia([var_list.var], var)}
+        | {escreva} escreva a_parentese exp_list* exp f_parentese ponto_e_virg  
+        {-> New comandos.escreva([exp_list.exp], exp)}
+        | {se} se a_parentese exp_logica f_parentese entao comando_list* comandos
+            senao_comando? fim_se ponto_e_virg
+        {-> New comandos.se(exp_logica, [comando_list.comandos], comandos, senao_comando)}
+        | {avalie} avalie a_parentese exp f_parentese caso_comando? 
+            senao_comando_doispontos? fim_avalie ponto_e_virg
+        {-> New comandos.avalie(exp, caso_comando, senao_comando_doispontos)}   
+        | {enquanto} enquanto a_parentese exp_logica f_parentese faca 
+            comando_list* comandos fim_enquanto ponto_e_virg
+        {-> New comandos.enquanto(exp_logica, [comando_list.comandos], comandos)}
+        | {repita} repita comando_list* comandos ate a_parentese exp_logica 
+            f_parentese ponto_e_virg
+        {-> New comandos.repita([comando_list.comandos], comandos, exp_logica)}
+        | {para} para var de [a]:valor ate [b]:valor faca comando comandos 
+            fim_para ponto_e_virg
+        {-> New comandos.para(var, a, b, [comandos])}
+        | {passo} para var de [a]:valor passo [b]:valor ate [c]:valor faca comando comandos 
+            fim_para ponto_e_virg
+        {-> New comandos.passo(var, a, b, c, [comandos])}
+    ;
+                   
+    // AUXILIARES PARA COMANDOS                
+    var_virg = {var_virg} var virg;  
+    var_virg_list = var_virg+;
+
+    exp_virg  = {exp_virg} exp virg | {elogica_virg} exp_logica virg;
+    exp_list {-> exp} = {exp_list} exp virg {-> exp};
+    exp_virg1 = {exp_virg} exp virg;
+    
+    senao_comando = senao comando comandos; 
+    senao_comando_doispontos = senao dois_pontos comando comandos;
+
+    caso_comandos = {comando_caso} caso valor dois_pontos comando comandos; 
+    caso_comando = caso_comandos+;
+
+    comando_ponto_virg = {comando_ponto_virg} comandos ponto_e_virg;
+    comando_list_virg = {comando_virgula} comando_ponto_virg+;
+
+    //####################### EXP ###########################
+    exp = {soma} exp mais termo         {-> New exp.soma(exp, termo.exp)} 
+            | {subtracao} exp menos termo   {-> New exp.subtracao(exp, termo.exp)} 
+            | {termo} termo            {-> termo.exp}
+    ;
+
+    termo {-> exp} = {mult} termo mult fator   {-> New exp.mult(termo.exp, fator.exp)}
+            | {div} termo div fator   {-> New exp.div(termo.exp, fator.exp)}
+            | {fator} fator          {-> fator.exp}
+    ;
+
+    fator {-> exp} = {valor} valor  {-> New exp.valor(valor)}
+            | {var} var           {-> New exp.var(var)}
+            | {fator_negativo} menos fator  {-> New exp.fator_negativo(menos, fator.exp)}
+            | {exp} a_parentese exp f_parentese   {-> exp}
+    ;
+
+    //####################### EXP_LOGICA ###########################
+    exp_logica = {e} exp_logica e exp_logica_termo  {-> New exp_logica.e(exp_logica, exp_logica_termo.exp_logica)}
+            | {ou} exp_logica ou exp_logica_termo   {-> New exp_logica.ou(exp_logica, exp_logica_termo.exp_logica)}
+            | {xor} exp_logica xor exp_logica_termo {-> New exp_logica.xor(exp_logica, exp_logica_termo.exp_logica)}
+            | {exp_logica_termo} exp_logica_termo       {-> exp_logica_termo.exp_logica}
+    ; 
+
+    exp_logica_termo {-> exp_logica} = {nao_elogica} nao exp_logica_termo  {-> New exp_logica.nao_elogica(exp_logica_termo.exp_logica)}
+            | {exp_logica_fator} exp_logica_fator {-> exp_logica_fator.exp_logica}
+    ;
+
+    exp_logica_fator {-> exp_logica} = 
+            {menorigual} [l]:exp menor_ou_igual_q [r]:exp {-> New exp_logica.menorigual(l, r)}
+            | {maiorigual} [l]:exp maior_ou_igual_q [r]:exp   {-> New exp_logica.maiorigual(l, r)}
+            | {menorq} [l]:exp menorq [r]:exp   {-> New exp_logica.menorq(l, r)}
+            | {maiorq} [l]:exp maiorq [r]:exp   {-> New exp_logica.maiorq(l, r)}                  
+            | {igual} [l]:exp igual [r]:exp     {-> New exp_logica.igual(l, r)}
+            | {diferente} [l]:exp diferente [r]:exp  {-> New exp_logica.diferente(l, r)}
+            | {elogica_termo_parenteses} a_parentese exp_logica f_parentese {-> exp_logica}
+    ;
+         
+    exp_ou_elogica = {exp} exp | {elogica} exp_logica;
+
+Abstract Syntax Tree
+
+    start = declaracao comando;
+
+    declaracoes = {tipo} tipo [vars]:var* [var]:var
+        | {const} id valor;        
+    declaracao = declaracoes*;
+
+    tipo = {real} real | {int} inteiro | {char} caractere | {booleano} booleano;
+    var = {id} id | {index} id num;
+    valor = {str} string | {num} num | {numreal} numreal;
+
+    comando = comandos*;
+    senao_comando = senao comando comandos; 
+    senao_comando_doispontos = senao dois_pontos comando comandos;
+    caso_comandos = {comando_caso} caso valor dois_pontos comando comandos; 
+    caso_comando = caso_comandos+;
+    exp_ou_elogica = {exp} exp | {elogica} exp_logica;
+
+    comandos = {atrib} var exp
+        | {leia} [vars]:var+ [var]:var
+        | {escreva} [exps]:exp+ [exp]:exp
+        | {se} exp_logica [a]:comandos+ [b]:comandos senao_comando?
+        | {avalie} exp caso_comando? senao_comando_doispontos?
+        | {enquanto} exp_logica [a]:comandos+ [b]:comandos
+        | {repita} [a]:comandos+ [b]:comandos exp_logica
+        | {para} var [a]:valor [b]:valor comandos+
+        | {passo} var [a]:valor [b]:valor [c]:valor comandos+
+    ; 
+
+    exp = {valor} valor
+        | {var} var 
+        | {fator_negativo} menos exp
+        | {soma} [l]:exp [r]:exp
+        | {subtracao} [l]:exp [r]:exp
+        | {mult} [l]:exp [r]:exp
+        | {div} [l]:exp [r]:exp
+        ;
+
+    exp_logica = {igual} [l]:exp [r]:exp
+        | {diferente} [l]:exp [r]:exp
+        | {menorigual} [l]:exp [r]:exp
+        | {maiorigual} [l]:exp [r]:exp
+        | {menorq} [l]:exp [r]:exp
+        | {maiorq} [l]:exp [r]:exp
+        | {nao_elogica} exp_logica
+        | {e} [l]:exp_logica [r]:exp_logica
+        | {ou} [l]:exp_logica [r]:exp_logica
+        | {xor} [l]:exp_logica [r]:exp_logica
+    ;
+
