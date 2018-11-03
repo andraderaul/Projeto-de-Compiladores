@@ -1,0 +1,22 @@
+programa teste10
+inicio
+   
+	inteiro: a, b, c;
+	real: z;
+	a :=  'ss' + 'dd';
+	
+	a :=  'ss' + 2;
+	
+	x := 2+3;
+	
+	z := 1+3,2;
+	
+	enquanto (1+2>2+w) faca
+		z:= 's';
+	fim enquanto;
+	
+	se ( (a = b) e (b = c)) entao
+		leia(a);
+	fim se;
+	
+fim.

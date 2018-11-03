@@ -1,0 +1,18 @@
+programa Teste02
+inicio
+
+   inteiro: anterior, atual, prox_val;
+
+   anterior := 0;      //Valor anterior
+   atual := 1;         //Valor atual
+   prox_val := 1;        //Proximo valor
+
+   // Sequencia de Fibonacci
+   enquanto (atual < 10) faca
+       prox_val := anterior + atual; //Expressão soma de anterior + atual = proxima
+       escreva(prox_val);
+       anterior := atual;
+       atual := prox_val;
+   fim enquanto;
+
+fim.

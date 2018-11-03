@@ -1,0 +1,26 @@
+programa teste09
+inicio
+	caractere: c,d,f,g,m,n,o,p;
+	caractere: string[16];
+	
+	c := 'O';
+	d := 'l';
+	f := 'a';
+	
+	g := 'M';
+	m := 'u';
+	n := 'n';
+	o := 'd';
+	p := 'o';
+	
+	string[0] := 'O';
+	string[1] := 'l';
+	string[2] := 'a';
+	
+	string[3] := 'M';
+	string[4] := 'u';
+	string[5] := 'n';
+	string[6] := 'd';
+	string[7] := 'o';
+	//string[7] := string[7] + string[8];
+fim.

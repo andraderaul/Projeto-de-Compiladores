@@ -1,0 +1,18 @@
+programa testePI
+inicio
+	inteiro:a,b,g;
+	inteiro:d,f;
+	const DOIS 2;
+	caractere: c;
+	const PI 3;
+
+	a := 2+2-2-2+PI;
+	
+	escreva('Olá Mundo!');
+	para i de 1 ate 5 faca
+		escreva('Teste do para');
+		leia(a);
+		leia(a,b,c,d);
+		//leia(PI);
+	fim para;
+fim.

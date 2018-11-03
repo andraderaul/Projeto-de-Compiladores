@@ -1,0 +1,8 @@
+Erro na linha 6 (Caracteres não podem ser somados).
+Erro na linha 6. Atribuição não permitida (variável "a" é do tipo inteiro e "'ss'" é do tipo caractere).
+Erro na linha 6. Atribuição não permitida (variável "a" é do tipo inteiro e "'dd'" é do tipo caractere).
+Erro na linha 8 (Caracteres não podem ser somados).
+Erro na linha 8. Atribuição não permitida (variável "a" é do tipo inteiro e "'ss'" é do tipo caractere).
+Erro na linha 10 (variável "x" não declarada).
+Erro na linha 14 (variável "w" não declarada).
+Erro na linha 15. Atribuição não permitida (variável "z" é do tipo real e "'s'" é do tipo caractere).

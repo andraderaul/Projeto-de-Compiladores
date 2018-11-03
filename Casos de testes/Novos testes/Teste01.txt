@@ -1,0 +1,78 @@
+programa Teste01
+inicio
+
+	const x 10;
+	inteiro: a;
+
+	a := x;
+
+    avalie(a)
+
+    caso 1:
+        leia(a,b,c,d);
+
+    caso 2:
+        escreva(x,y,z,w);
+
+    caso 3:
+        se(a > 2 e a < 15) entao
+            leia(i,j,k,l);
+        fim se;
+
+    caso 4:
+        se(a < 10 ou a >10) entao
+            escreva(k,k,j,m);
+        senao
+            escreva(a,b,c,d);
+            escreva('wtf\n');
+        fim se;
+
+    caso 5:
+        se ( (a + b) > (b + a) ) entao
+            se ( (a > b) e (b < a) ) entao
+                se ( nao(i > j) xor nao(j < i)) entao
+                    leia(a,s,d);
+                fim se;
+            fim se;
+        senao
+            se ( 4 > 2 e 2 < 4) entao
+                leia(a,v);
+            fim se;
+        fim se;
+
+    caso 6:
+        enquanto (i < 10) faca
+            escreva(i,j,k);
+            leia(j,k,i);
+            z := y + 1;
+        fim enquanto;
+
+    caso 7:
+        repita
+            leia(f,g,s,l);
+            leia(o,p,q,r);
+            w := w + 1;
+        ate(w < 10);
+
+     caso 8:
+        para i de 0 ate 10 faca
+           para j de 0 ate 10 faca
+                escreva(i,j);
+                leia(j,i);
+                escreva(j,j);
+                escreva(i,i);
+           fim para;
+        fim para;
+
+     caso 9:
+        para k de 0 passo 2 ate 100 faca
+            escreva(k);
+            escreva(k+2);
+            escreva(k,j,i);
+        fim para;
+      senao:
+              i := 2;
+             escreva('tudo safe');
+    fim avalie;
+
+fim.

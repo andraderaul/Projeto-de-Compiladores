@@ -1,0 +1,14 @@
+programa teste5
+inicio
+	
+	// /*
+	
+	inteiro : i[10],j;
+	
+
+	/*enquanto verdade faca*/
+		escreva('Ola Mundo');*/
+	//fim enquanto; 
+		
+	
+fim.

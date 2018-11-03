@@ -1,0 +1,13 @@
+Erro na linha 4. Constante "teste03" igual ao nome do programa.
+Erro na linha 6. Variável "teste03" igual ao nome do programa.
+Erro na linha 7. Variável "f" duplicada
+Erro na linha 9. (Vetor "aux" declarado com ZERO posição).
+Erro na linha 14. (Índice 10 do vetor "vet" maior que o tamanho "10").
+Erro na linha 14. (Índice 20 do vetor "vet" maior que o tamanho "10").
+Erro na linha 14. Atribuição não permitida (variável "w" é do tipo inteiro e "a" é do tipo real ).
+Erro na linha 19 (variável "x" não declarada).
+Erro na linha 19 (variável "i" não declarada).
+Erro na linha 24. Atribuição não permitida (variável "b" é do tipo inteiro e "3,2" é do tipo real).
+Erro na linha 25. Atribuição não permitida (variável "a" é do tipo real e "'3,2'" é do tipo caractere).
+Erro na linha 27. Atribuição não permitida ("PI" é uma constante).
+Erro na linha 29. Atribuição não permitida (variável "nome" é do tipo caractere e "PI" é do tipo constante 3,14 ).
